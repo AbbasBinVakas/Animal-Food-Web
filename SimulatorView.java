@@ -101,7 +101,7 @@ public class SimulatorView extends JFrame
      * @param step Which iteration step it is.
      * @param field The field whose status is to be displayed.
      */
-    public void showStatus(int step, Field field)
+    public void showStatus(int step, Field field, Weather weather)
     {
         if(!isVisible()) {
             setVisible(true);
@@ -126,7 +126,7 @@ public class SimulatorView extends JFrame
         }
         stats.countFinished();
 
-        population.setText(POPULATION_PREFIX + stats.getPopulationDetails(field));
+        population.setText(POPULATION_PREFIX + stats.getPopulationDetails(field, weather));
         fieldView.repaint();
     }
 

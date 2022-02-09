@@ -31,10 +31,11 @@ public class Simulator
     // The probability that a tiger will be created in any given grid position.
     private static final double TIGER_CREATION_PROBABILITY = 0.02;
     //The probability that a plant will be created in any given grid position 
-    private static final double PLANT_CREATION_PROBABILITY = 0.01;
+    private static final double PLANT_CREATION_PROBABILITY = 0.05;
     // How many steps daytime/not daytime takes;
     private static final int DAYTIME_LENGTH = 2;
-    
+    // How long a weather effect should last;
+    private static final int WEATHER_LENGTH = 100;
 
     // List of animals in the field.
     private List<Animal> animals;
@@ -48,6 +49,8 @@ public class Simulator
     private SimulatorView view;
     // Whether it is daytime or not.
     private boolean daytime;
+    // Dictates what the current weather conditions are
+    private Weather currentWeather;
 
     /**
      * Construct a simulation field with default size.
@@ -84,6 +87,8 @@ public class Simulator
         view.setColor(Goat.class, Color.YELLOW);
         view.setColor(Tiger.class, Color.ORANGE);
         view.setColor(Plant.class, Color.GREEN);
+        
+        currentWeather = currentWeather.chooseWeather();
 
         // Setup a valid starting point.
         reset();
@@ -117,9 +122,12 @@ public class Simulator
     {
         for(int step = 1; step <= numSteps && view.isViable(field); step++) {
             simulateOneStep();
-            // delay(100);   // uncomment this to run more slowly
+            // delay(60);   // uncomment this to run more slowly
             if (step % DAYTIME_LENGTH == 0) {
                 daytime = !daytime;
+            }
+            if (step % WEATHER_LENGTH == 0 ) {
+                currentWeather = Weather.chooseWeather();
             }
         }
     }
@@ -138,20 +146,20 @@ public class Simulator
         // Let all rabbits act.
         for(Iterator<Animal> it = animals.iterator(); it.hasNext(); ) {
             Animal animal = it.next();
-            animal.act(newAnimals, daytime);
+            animal.act(newAnimals, daytime, currentWeather);
             if(! animal.isAlive()) {
                 it.remove();
             }
         }
         for(Iterator<Plant> it = plants.iterator(); it.hasNext(); ) {
             Plant plant = it.next();
-            plant.act(daytime);
+            plant.act(daytime, currentWeather);
         }
 
         // Add the newly born foxes and rabbits to the main lists.
         animals.addAll(newAnimals);
 
-        view.showStatus(step, field);
+        view.showStatus(step, field, currentWeather);
     }
 
     /**
@@ -165,7 +173,7 @@ public class Simulator
         populate();
 
         // Show the starting state in the view.
-        view.showStatus(step, field);
+        view.showStatus(step, field, currentWeather);
     }
 
     /**

@@ -10,11 +10,11 @@ import java.util.List;
 public class Plant extends Being
 {
     private static final int GROWTH_HEIGHT = 2; 
-    
+
     private static final int MAX_GROWTH_HEIGHT = 10;
-    
+
     private static final Random rand = Randomizer.getRandom();
-    
+
     private int height;
 
     /**
@@ -30,22 +30,26 @@ public class Plant extends Being
             height = 0;
         }
     }
-        
+
     private void incrementHeight()
     {
-        height = height + GROWTH_HEIGHT;
-        if(height > MAX_GROWTH_HEIGHT) {
-            height = MAX_GROWTH_HEIGHT;
+        if(height < MAX_GROWTH_HEIGHT) {
+            if(height + GROWTH_HEIGHT <= MAX_GROWTH_HEIGHT) {
+                height+= GROWTH_HEIGHT;
+            }
+            else{
+                height = MAX_GROWTH_HEIGHT;
+            }
         }
     }
-    
-    public void act(boolean daytime)
+
+    public void act(boolean daytime, Weather weather)
     {
         if(daytime) {
             incrementHeight();
         }
     }
-    
+
     public void setEaten()
     {
         height = 0;

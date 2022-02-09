@@ -7,9 +7,9 @@ import java.util.Random;
  */
 public abstract class Weather
 {
-    private static final double RAIN_PROBABILITY = 0.2;
-    private static final double SNOW_PROBABILITY = 0.1;
-    private static final double SUNNY_PROBABILITY = 0.7;
+    private static final double RAIN_PROBABILITY = 0.3;
+    private static final double SNOW_PROBABILITY = 0.2;
+    private static final double SUNNY_PROBABILITY = 0.5;
 
     /**
      * An example of a method - replace this comment with your own
