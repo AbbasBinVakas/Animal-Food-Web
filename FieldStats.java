@@ -15,8 +15,6 @@ public class FieldStats
     private HashMap<Class, Counter> counters;
     // Whether the counters are currently up to date.
     private boolean countsValid;
-    
-    private Weather weather;
 
     /**
      * Construct a FieldStats object.
@@ -33,7 +31,7 @@ public class FieldStats
      * Get details of what is in the field.
      * @return A string describing what is in the field.
      */
-    public String getPopulationDetails(Field field, Weather weather)
+    public String getPopulationDetails(Field field)
     {
         StringBuffer buffer = new StringBuffer();
         if(!countsValid) {
@@ -46,7 +44,6 @@ public class FieldStats
             buffer.append(info.getCount());
             buffer.append(' ');
         }
-        buffer.append("Weather: " + weather.returnWeatherName());
         return buffer.toString();
     }
     

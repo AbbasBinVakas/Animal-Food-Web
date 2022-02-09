@@ -1,5 +1,6 @@
 import java.util.List;
 import java.util.Random;
+import java.util.Iterator;
 
 /**
  * A simple model of a mouse.
@@ -22,11 +23,16 @@ public class Mouse extends Animal
     private static final int MAX_LITTER_SIZE = 15;
     // A shared random number generator to control breeding.
     private static final Random rand = Randomizer.getRandom();
+    
+    private static final int PLANT_FOOD_VALUE = 9;
 
     // Individual characteristics (instance fields).
 
     // The mouse's age.
     private int age;
+    private int foodLevel;
+    private int height;
+    //private Plant plant;
 
     /**
      * Create a new mouse. A mouse may be created with age
@@ -50,7 +56,7 @@ public class Mouse extends Animal
      * around. Sometimes it will breed or die of old age.
      * @param newMice A list to return newly born mice.
      */
-    public void act(List<Animal> newMice, boolean daytime, Weather weather)
+    public void act(List<Animal> newMice, boolean daytime)
     {
         incrementAge();
         if(isAlive() && daytime) {
@@ -119,5 +125,33 @@ public class Mouse extends Animal
     private boolean canBreed()
     {
         return age >= BREEDING_AGE;
+    }
+    
+    /**
+     * Make this mouse more hungry. This could result in the mouse's death.
+     */
+    private void incrementHunger()
+    {
+        foodLevel--;
+        if(foodLevel <= 0) {
+            setDead();
+        }
+    }
+    
+    private Location findFood()
+    {
+        Field field = getField();
+        List<Location> adjacent = field.adjacentLocations(getLocation());
+        Iterator<Location> it = adjacent.iterator();
+        while(it.hasNext()) {
+            Location where = it.next();
+            Object animal = field.getObjectAt(where);
+            if(height > 0) { 
+                setEaten();
+                foodLevel = PLANT_FOOD_VALUE;
+                return where;
+            }
+        }
+        return null;
     }
 }

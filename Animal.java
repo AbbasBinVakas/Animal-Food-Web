@@ -24,5 +24,5 @@ public abstract class Animal extends Being
      * whatever it wants/needs to do.
      * @param newAnimals A list to receive newly born animals.
      */
-    abstract public void act(List<Animal> newAnimals, boolean daytime, Weather weather);
+    abstract public void act(List<Animal> newAnimals, boolean daytime);
 }

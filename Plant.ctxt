@@ -1,13 +1,11 @@
 #BlueJ class context
 comment0.target=Plant
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ Plant\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\n\ Write\ a\ description\ of\ class\ Plant\ here.\n\n\ @author\ (your\ name)\n\ @version\ (a\ version\ number\ or\ a\ date)\n
 comment1.params=randomHeight\ field\ location
 comment1.target=Plant(boolean,\ Field,\ Location)
-comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Plant\r\n
+comment1.text=\n\ Constructor\ for\ objects\ of\ class\ Plant\n
 comment2.params=
-comment2.target=void\ setEaten()
-comment3.params=
-comment3.target=void\ incrementHeight()
-comment4.params=daytime\ weather
-comment4.target=void\ act(boolean,\ Weather)
-numComments=5
+comment2.target=void\ incrementHeight()
+comment3.params=daytime
+comment3.target=void\ act(boolean)
+numComments=4

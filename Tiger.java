@@ -61,7 +61,7 @@ public class Tiger extends Animal
      * @param field The field currently occupied.
      * @param newTigers A list to return newly born tigers.
      */
-    public void act(List<Animal> newTigers, boolean daytime, Weather weather)
+    public void act(List<Animal> newTigers, boolean daytime)
     {
         incrementAge();
         incrementHunger();

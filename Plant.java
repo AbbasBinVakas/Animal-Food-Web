@@ -31,11 +31,6 @@ public class Plant extends Being
         }
     }
     
-    protected void setEaten()
-    {
-        height = 0;
-    }
-    
     private void incrementHeight()
     {
         height++;
@@ -44,7 +39,7 @@ public class Plant extends Being
         }
     }
     
-    public void act(boolean daytime, Weather weather)
+    public void act(boolean daytime)
     {
         if(!daytime) {
             incrementHeight();
