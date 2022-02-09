@@ -110,7 +110,7 @@ public class Simulator
     public void runLongSimulation()
     {
         //used to be 4000 steps before
-        simulate(1000);
+        simulate(2000);
     }
 
     /**

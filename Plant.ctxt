@@ -9,5 +9,5 @@ comment2.target=void\ incrementHeight()
 comment3.params=daytime\ weather
 comment3.target=void\ act(boolean,\ Weather)
 comment4.params=
-comment4.target=void\ setEaten()
+comment4.target=void\ beEaten()
 numComments=5

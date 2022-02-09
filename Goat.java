@@ -134,7 +134,8 @@ public class Goat extends Animal
             Object Being = field.getObjectAt(where);
             if(Being instanceof Plant) {
                 Plant plant = (Plant) Being;
-                plant.setEaten();
+                plant.beEaten();
+                plant.beEaten();
                 foodLevel = PLANT_FOOD_VALUE;
                 return where;
             }

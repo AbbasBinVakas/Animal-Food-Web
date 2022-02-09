@@ -50,8 +50,8 @@ public class Plant extends Being
         }
     }
 
-    public void setEaten()
+    public void beEaten()
     {
-        height = 0;
+        height--;
     }
 }
