@@ -151,7 +151,7 @@ public class Simulator
         }
         for(Iterator<Plant> it = plants.iterator(); it.hasNext(); ) {
             Plant plant = it.next();
-            plant.act(daytime);
+            plant.act(daytime, currentWeather);
         }
 
         // Add the newly born foxes and rabbits to the main lists.

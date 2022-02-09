@@ -44,7 +44,7 @@ public class Plant extends Being
         }
     }
     
-    public void act(boolean daytime)
+    public void act(boolean daytime, Weather weather)
     {
         if(!daytime) {
             incrementHeight();
