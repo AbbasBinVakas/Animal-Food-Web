@@ -144,9 +144,10 @@ public class Goat extends Animal
         Iterator<Location> it = adjacent.iterator();
         while(it.hasNext()) {
             Location where = it.next();
-            Object animal = field.getObjectAt(where);
-            if(height > 0) { 
-                setEaten();
+            Object Being = field.getObjectAt(where);
+            if(Being instanceof Plant) {
+                Plant plant = (Plant) Being;
+                plant.setEaten();
                 foodLevel = PLANT_FOOD_VALUE;
                 return where;
             }

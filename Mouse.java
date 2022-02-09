@@ -1,7 +1,6 @@
 import java.util.List;
 import java.util.Random;
 import java.util.Iterator;
-
 /**
  * A simple model of a mouse.
  * Mice age, move, breed, and die.
@@ -31,8 +30,6 @@ public class Mouse extends Animal
     // The mouse's age.
     private int age;
     private int foodLevel;
-    private int height;
-    //private Plant plant;
 
     /**
      * Create a new mouse. A mouse may be created with age
@@ -145,9 +142,10 @@ public class Mouse extends Animal
         Iterator<Location> it = adjacent.iterator();
         while(it.hasNext()) {
             Location where = it.next();
-            Object animal = field.getObjectAt(where);
-            if(height > 0) { 
-                setEaten();
+            Object Being = field.getObjectAt(where);
+            if(Being instanceof Plant) {
+                Plant plant = (Plant) Being;
+                plant.setEaten();
                 foodLevel = PLANT_FOOD_VALUE;
                 return where;
             }

@@ -8,4 +8,6 @@ comment2.params=
 comment2.target=void\ incrementHeight()
 comment3.params=daytime
 comment3.target=void\ act(boolean)
-numComments=4
+comment4.params=
+comment4.target=void\ setEaten()
+numComments=5

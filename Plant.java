@@ -9,7 +9,7 @@ import java.util.List;
  */
 public class Plant extends Being
 {
-    private static final double GROWTH_HEIGHT = 2; 
+    private static final int GROWTH_HEIGHT = 2; 
     
     private static final int MAX_GROWTH_HEIGHT = 10;
     
@@ -30,19 +30,24 @@ public class Plant extends Being
             height = 0;
         }
     }
-    
+        
     private void incrementHeight()
     {
-        height++;
+        height = height + GROWTH_HEIGHT;
         if(height > MAX_GROWTH_HEIGHT) {
-            setEaten();
+            height = MAX_GROWTH_HEIGHT;
         }
     }
     
     public void act(boolean daytime)
     {
-        if(!daytime) {
+        if(daytime) {
             incrementHeight();
         }
+    }
+    
+    public void setEaten()
+    {
+        height = 0;
     }
 }

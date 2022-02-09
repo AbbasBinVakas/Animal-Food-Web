@@ -77,8 +77,4 @@ public class Being
         return alive;
     }
     
-    public void setEaten()
-    {
-        height = 0;
-    }
 }
