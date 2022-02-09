@@ -87,6 +87,8 @@ public class Simulator
         view.setColor(Goat.class, Color.YELLOW);
         view.setColor(Tiger.class, Color.ORANGE);
         view.setColor(Plant.class, Color.GREEN);
+        
+        currentWeather = currentWeather.chooseWeather();
 
         // Setup a valid starting point.
         reset();
@@ -157,7 +159,7 @@ public class Simulator
         // Add the newly born foxes and rabbits to the main lists.
         animals.addAll(newAnimals);
 
-        view.showStatus(step, field);
+        view.showStatus(step, field, currentWeather);
     }
 
     /**
@@ -171,7 +173,7 @@ public class Simulator
         populate();
 
         // Show the starting state in the view.
-        view.showStatus(step, field);
+        view.showStatus(step, field, currentWeather);
     }
 
     /**

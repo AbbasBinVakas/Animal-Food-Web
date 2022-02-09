@@ -6,4 +6,6 @@ comment1.target=Sunny()
 comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Sunny\r\n
 comment2.params=
 comment2.target=void\ weatherEffect()
-numComments=3
+comment3.params=
+comment3.target=java.lang.String\ returnWeatherName()
+numComments=4

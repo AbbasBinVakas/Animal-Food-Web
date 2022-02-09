@@ -27,4 +27,8 @@ public class Snowing extends Weather
     {
         
     }
+    
+    public String returnWeatherName() {
+        return "Snowing";
+    }
 }

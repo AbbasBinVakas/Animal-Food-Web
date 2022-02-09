@@ -18,6 +18,10 @@ public class Sunny extends Weather
     }
 
     public void weatherEffect() {
-        
+
+    }
+
+    public String returnWeatherName() {
+        return "Sunny";
     }
 }

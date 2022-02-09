@@ -27,4 +27,8 @@ public class Raining extends Weather
     {
         
     }
+    
+    public String returnWeatherName() {
+        return "Raining";
+    }
 }

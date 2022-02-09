@@ -18,6 +18,8 @@ public abstract class Weather
      * @return    the sum of x and y
      */
     abstract public void weatherEffect();
+    
+    abstract public String returnWeatherName();
 
     public static Weather chooseWeather() {
         Random rand = Randomizer.getRandom();
