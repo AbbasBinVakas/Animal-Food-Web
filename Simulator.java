@@ -34,7 +34,8 @@ public class Simulator
     private static final double PLANT_CREATION_PROBABILITY = 0.01;
     // How many steps daytime/not daytime takes;
     private static final int DAYTIME_LENGTH = 2;
-    
+    // How long a weather effect should last;
+    private static final int WEATHER_LENGTH = 20;
 
     // List of animals in the field.
     private List<Animal> animals;
@@ -48,6 +49,8 @@ public class Simulator
     private SimulatorView view;
     // Whether it is daytime or not.
     private boolean daytime;
+    // Dictates what the current weather conditions are
+    private Weather currentWeather;
 
     /**
      * Construct a simulation field with default size.
@@ -121,6 +124,9 @@ public class Simulator
             if (step % DAYTIME_LENGTH == 0) {
                 daytime = !daytime;
             }
+            if (step % WEATHER_LENGTH == 0 ) {
+                currentWeather = Weather.chooseWeather();
+            }
         }
     }
 
@@ -138,7 +144,7 @@ public class Simulator
         // Let all rabbits act.
         for(Iterator<Animal> it = animals.iterator(); it.hasNext(); ) {
             Animal animal = it.next();
-            animal.act(newAnimals, daytime);
+            animal.act(newAnimals, daytime, currentWeather);
             if(! animal.isAlive()) {
                 it.remove();
             }

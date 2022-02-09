@@ -50,7 +50,7 @@ public class Goat extends Animal
      * around. Sometimes it will breed or die of old age.
      * @param newGoats A list to return newly born goats.
      */
-    public void act(List<Animal> newGoats, boolean daytime)
+    public void act(List<Animal> newGoats, boolean daytime, Weather weather)
     {
         incrementAge();
         if(isAlive() && daytime) {

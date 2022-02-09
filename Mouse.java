@@ -50,7 +50,7 @@ public class Mouse extends Animal
      * around. Sometimes it will breed or die of old age.
      * @param newMice A list to return newly born mice.
      */
-    public void act(List<Animal> newMice, boolean daytime)
+    public void act(List<Animal> newMice, boolean daytime, Weather weather)
     {
         incrementAge();
         if(isAlive() && daytime) {
