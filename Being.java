@@ -16,7 +16,7 @@ public class Being
     protected Location location;
     // Whether the being is infected with disease or not.
     protected boolean infected;
-    
+    protected String count;
     public Being(Field field, Location location)
     {
         this.field = field;
@@ -81,5 +81,13 @@ public class Being
     protected void recovered()
     {
         infected = false;
+    }
+    
+    public String numberInfected()
+    {
+        if(infected) {
+            count++;
+        }
+        return count;
     }
 }

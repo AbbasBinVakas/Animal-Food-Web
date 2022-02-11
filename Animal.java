@@ -1,5 +1,6 @@
 import java.util.List;
 import java.util.Random;
+import java.util.Iterator;
 
 /**
  * A class representing shared characteristics of animals.
@@ -23,6 +24,8 @@ public abstract class Animal extends Being
     protected static final double INFECTION_RECOVERY_PROBABILITY = 0.02;
     // The probability that the animal will die due to the snow each step.
     protected static final double SNOWING_DEATH_PROBABILITY = 0.01;
+    
+    private static final double INFECTION_SPREAD_PROBABILITY = 0.35;
     // A random number generator.
     protected static final Random rand = Randomizer.getRandom();
     // The gender of the animal
@@ -118,6 +121,21 @@ public abstract class Animal extends Being
                     recovered();
             }
             // Otherwise the animal will stay alive but still infected
+        }
+    }
+    
+    private void spreadInfection()
+    {
+        Field field = getField();
+        List<Location> adjacent = field.adjacentLocations(getLocation());
+        Iterator<Location> it = adjacent.iterator();
+        while(it.hasNext()) {
+            Location where = it.next();
+            Object animal = field.getObjectAt(where);
+            Double randomDouble = rand.nextDouble(); 
+            if(isAlive() && randomDouble <= INFECTION_SPREAD_PROBABILITY) {
+                infected = true;
+            }
         }
     }
 }

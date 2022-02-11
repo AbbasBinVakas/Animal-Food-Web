@@ -53,6 +53,7 @@ public class Simulator
     private boolean daytime;
     // Dictates what the current weather conditions are
     private Weather currentWeather;
+    private int currentInfection;
 
     /**
      * Construct a simulation field with default size.
