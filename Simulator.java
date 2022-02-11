@@ -37,7 +37,7 @@ public class Simulator
     // How many steps daytime/not daytime takes;
     private static final int DAYTIME_LENGTH = 2;
     // How long a weather effect should last;
-    private static final int WEATHER_LENGTH = 100;
+    private static final int WEATHER_LENGTH = 20;
 
     // List of animals in the field.
     private List<Animal> animals;
@@ -112,7 +112,7 @@ public class Simulator
     public void runLongSimulation()
     {
         //used to be 4000 steps before
-        simulate(2000);
+        simulate(1000);
     }
 
     /**
@@ -149,11 +149,7 @@ public class Simulator
         for(Iterator<Animal> it = animals.iterator(); it.hasNext(); ) {
             Animal animal = it.next();
             animal.act(newAnimals, daytime, currentWeather);
-            if(rand.nextDouble() <= ANIMAL_INFECTION_PROBABILITY)
-            {
-                animal.isInfected();
-            }
-            if(! animal.isAlive()) {
+            if(!animal.isAlive()) {
                 it.remove();
             }
         }

@@ -2,10 +2,8 @@
 comment0.target=Weather
 comment0.text=\r\n\ Write\ a\ description\ of\ class\ Weather\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
 comment1.params=
-comment1.target=void\ weatherEffect()
-comment1.text=\r\n\ An\ example\ of\ a\ method\ -\ replace\ this\ comment\ with\ your\ own\r\n\r\n\ @param\ \ y\ \ a\ sample\ parameter\ for\ a\ method\r\n\ @return\ \ \ \ the\ sum\ of\ x\ and\ y\r\n
+comment1.target=java.lang.String\ returnWeatherName()
+comment1.text=\r\n\ Returns\ the\ name\ of\ the\ weather.\r\n
 comment2.params=
-comment2.target=java.lang.String\ returnWeatherName()
-comment3.params=
-comment3.target=Weather\ chooseWeather()
-numComments=4
+comment2.target=Weather\ chooseWeather()
+numComments=3

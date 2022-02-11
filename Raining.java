@@ -16,18 +16,11 @@ public class Raining extends Weather
     {
         // initialise instance variables
     }
-
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-    public void weatherEffect()
-    {
-        
-    }
     
+    /**
+     * Returns the name of the weather, in this case "Raining".
+     * @return "Raining"
+     */
     public String returnWeatherName() {
         return "Raining";
     }

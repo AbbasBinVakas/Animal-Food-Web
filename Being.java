@@ -1,4 +1,3 @@
-
 /**
  * Write a description of class Beings here.
  *
@@ -8,13 +7,15 @@
 public class Being
 {
     // Whether the animal is alive or not.
-    private boolean alive;
+    protected boolean alive;
+    // The being's age.
+    protected int age;
     // The being's field.
-    private Field field;
+    protected Field field;
     // The being's position in the field.
-    private Location location;
-    
-    private boolean infected;
+    protected Location location;
+    // Whether the being is infected with disease or not.
+    protected boolean infected;
     
     public Being(Field field, Location location)
     {
@@ -77,13 +78,8 @@ public class Being
         return alive;
     }
     
-    protected boolean isInfected()
+    protected void recovered()
     {
-        return infected;
-    }
-    
-    protected boolean recovered()
-    {
-        return infected = false;
+        infected = false;
     }
 }

@@ -20,20 +20,9 @@ public class Mouse extends Animal
     private static final double BREEDING_PROBABILITY = 0.40;
     // The maximum number of births.
     private static final int MAX_LITTER_SIZE = 15;
-    // A shared random number generator to control breeding.
-    private static final Random rand = Randomizer.getRandom();
     // The food value of a single moues. In effect, this is the
     // number of steps a mouse can go before it has to eat again.
-    private static final int PLANT_FOOD_VALUE = 9;
-
-    private static final double INFECTION_DEATH_PROBABILITY = 0.3;
-
-    // Individual characteristics (instance fields).
-
-    // The mouse's age.
-    private int age;
-    // The mouse's food level, which is increased by eating plants.
-    private int foodLevel;
+    private static final int FOOD_VALUE = 9;
 
     /**
      * Create a new mouse. A mouse may be created with age
@@ -45,14 +34,14 @@ public class Mouse extends Animal
      */
     public Mouse(boolean randomAge, Field field, Location location)
     {
-        super(field, location);
+        super(field, location, BREEDING_AGE, MAX_AGE, BREEDING_PROBABILITY, MAX_LITTER_SIZE);
         if(randomAge) {
             age = rand.nextInt(MAX_AGE);
-            foodLevel = rand.nextInt(PLANT_FOOD_VALUE);
+            foodLevel = rand.nextInt(FOOD_VALUE);
         }
         else {
             age = 0;
-            foodLevel = PLANT_FOOD_VALUE;
+            foodLevel = FOOD_VALUE;
         }
     }
 
@@ -61,59 +50,53 @@ public class Mouse extends Animal
      * around. Sometimes it will breed or die of old age.
      * @param newMice A list to return newly born mice.
      */
-    public void act(List<Animal> newMice, boolean daytime, Weather weather)
+    public void act(List<Animal> newYoung, boolean daytime, Weather weather)
     {
-        incrementAge();
-        incrementHunger();
-        if(isAlive() && !daytime) {
-            giveBirth(newMice);            
-            // See if it was possible to move.
-            Location newLocation = getField().freeAdjacentLocation(getLocation());
-            if(newLocation != null) {
-                findFood();
+        if(weather instanceof Sunny) { // what the animal does while it is sunny
+            incrementAge();
+            incrementHunger();
+            if(isAlive() && !daytime) {
+                giveBirth(newYoung);            
+                // See if it was possible to move.
+                Location newLocation = getField().freeAdjacentLocation(getLocation());
+                if(newLocation != null) {
+                    findFood();
+                }
+                else {
+                    // Overcrowding.
+                    setDead();
+                }
             }
-            else {
-                // Overcrowding.
-                setDead();
-            }
+            ifInfected();
         }
-
-        if(isInfected()) {
-            if(rand.nextDouble() < INFECTION_DEATH_PROBABILITY) {
+        if(weather instanceof Raining) { // what the animal does while it is raining
+            incrementAge();
+            incrementHunger();
+            if(isAlive() && !daytime) {  
+                giveBirth(newYoung);
+                // See if it was possible to move.
+                Location newLocation = getField().freeAdjacentLocation(getLocation());
+                if(newLocation != null) {
+                    findFood();
+                }
+                else {
+                    // Overcrowding.
+                    setDead();
+                }
+            }
+            ifInfected();
+        }
+        if(weather instanceof Snowing) { // what the animal does while it is snowing
+            if(rand.nextDouble() <= SNOWING_DEATH_PROBABILITY) {
                 setDead();
-            }
-            else if (rand.nextDouble() == INFECTION_DEATH_PROBABILITY) {
-                recovered();
-            }
-            else if(rand.nextDouble() > INFECTION_DEATH_PROBABILITY) {
-                isInfected();
             }
         }
     }
 
     /**
-     * Increase the age.
-     * This could result in the mouse's death.
+     * Look for plants adjacent to the current location.
+     * @return Where food was found, or null if it wasn't.
      */
-    private void incrementAge()
-    {
-        age++;
-        if(age > MAX_AGE) {
-            setDead();
-        }
-    }
-
-    /**
-     * Make this mouse more hungry. This could result in the mouse's death.
-     */
-    private void incrementHunger()
-    {
-        foodLevel--;
-        if(foodLevel <= 0) {
-            setDead();
-        }
-    }
-
     private Location findFood()
     {
         Field field = getField();
@@ -125,7 +108,7 @@ public class Mouse extends Animal
             if(Being instanceof Plant) {
                 Plant plant = (Plant) Being;
                 plant.beEaten();
-                foodLevel = PLANT_FOOD_VALUE;
+                foodLevel = FOOD_VALUE;
                 return where;
             }
         }
@@ -149,28 +132,5 @@ public class Mouse extends Animal
             Mouse young = new Mouse(false, field, loc);
             newMice.add(young);
         }
-    }
-
-    /**
-     * Generate a number representing the number of births,
-     * if it can breed.
-     * @return The number of births (may be zero).
-     */
-    private int breed()
-    {
-        int births = 0;
-        if(canBreed() && rand.nextDouble() <= BREEDING_PROBABILITY) {
-            births = rand.nextInt(MAX_LITTER_SIZE) + 1;
-        }
-        return births;
-    }
-
-    /**
-     * A mouse can breed if it has reached the breeding age.
-     * @return true if the mouse can breed, false otherwise.
-     */
-    private boolean canBreed()
-    {
-        return age >= BREEDING_AGE;
     }
 }

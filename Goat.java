@@ -16,23 +16,14 @@ public class Goat extends Animal
     // The age at which a goat can start to breed.
     private static final int BREEDING_AGE = 10;
     // The age to which a goat can live.
-    private static final int MAX_AGE = 20;
+    private static final int MAX_AGE = 30;
     // The likelihood of a goat breeding.
     private static final double BREEDING_PROBABILITY = 0.18;
     // The maximum number of births.
-    private static final int MAX_LITTER_SIZE = 2;
-    // A shared random number generator to control breeding.
-    private static final Random rand = Randomizer.getRandom();
+    private static final int MAX_LITTER_SIZE = 3;
     // The food value of a single goat. In effect, this is the
     // number of steps a goat can go before it has to eat again.
-    private static final int PLANT_FOOD_VALUE = 9;
-
-    // Individual characteristics (instance fields).
-
-    // The goat's age.
-    private int age;
-    // The goat's food level, which is increased by eating plants.
-    private int foodLevel;
+    private static final int FOOD_VALUE = 12;
 
     /**
      * Create a new goat. A goat may be created with age
@@ -44,14 +35,14 @@ public class Goat extends Animal
      */
     public Goat(boolean randomAge, Field field, Location location)
     {
-        super(field, location);
+        super(field, location, BREEDING_AGE, MAX_AGE, BREEDING_PROBABILITY, MAX_LITTER_SIZE);
         if(randomAge) {
             age = rand.nextInt(MAX_AGE);
-            foodLevel = rand.nextInt(PLANT_FOOD_VALUE);
+            foodLevel = rand.nextInt(FOOD_VALUE);
         }
         else {
             age = 0;
-            foodLevel = PLANT_FOOD_VALUE;
+            foodLevel = FOOD_VALUE;
         }
     }
 
@@ -60,70 +51,53 @@ public class Goat extends Animal
      * around. Sometimes it will breed or die of old age.
      * @param newGoats A list to return newly born goats.
      */
-    // public void act(List<Animal> newGoats, boolean daytime, Weather weather)
-    // {
-        // incrementAge();
-        // incrementHunger();
-        // if(isAlive() && !daytime) {
-            // giveBirth(newGoats);            
-            // // Move towards a source of food if found.
-            // Location newLocation = findFood();
-            // if(newLocation == null) { 
-                // // No food found - try to move to a free location.
-                // newLocation = getField().freeAdjacentLocation(getLocation());
-            // }
-            // // See if it was possible to move.
-            // if(newLocation != null) {
-                // setLocation(newLocation);
-            // }
-            // else {
-                // // Overcrowding.
-                // setDead();
-            // }
-        // }
-    // }
-    
-    public void act(List<Animal> newGoats, boolean daytime, Weather weather)
+    public void act(List<Animal> newYoung, boolean daytime, Weather weather)
     {
-        incrementAge();
-        incrementHunger();
-        if(isAlive() && !daytime) {
-            giveBirth(newGoats);            
-            // See if it was possible to move.
-            Location newLocation = getField().freeAdjacentLocation(getLocation());
-            if(newLocation != null) {
-                findFood();
+        if(weather instanceof Sunny) { // what the animal does while it is sunny
+            incrementAge();
+            incrementHunger();
+            if(isAlive() && daytime) {
+                giveBirth(newYoung);            
+                // See if it was possible to move.
+                Location newLocation = getField().freeAdjacentLocation(getLocation());
+                if(newLocation != null) {
+                    findFood();
+                }
+                else {
+                    // Overcrowding.
+                    setDead();
+                }
             }
-            else {
-                // Overcrowding.
+            ifInfected();
+        }
+        if(weather instanceof Raining) { // what the animal does while it is raining
+            incrementAge();
+            incrementHunger();
+            if(isAlive() && !daytime) {  
+                giveBirth(newYoung);
+                // See if it was possible to move.
+                Location newLocation = getField().freeAdjacentLocation(getLocation());
+                if(newLocation != null) {
+                    findFood();
+                }
+                else {
+                    // Overcrowding.
+                    setDead();
+                }
+            }
+            ifInfected();
+        }
+        if(weather instanceof Snowing) { // what the animal does while it is snowing
+            if(rand.nextDouble() <= SNOWING_DEATH_PROBABILITY) {
                 setDead();
             }
         }
     }
 
     /**
-     * Increase the age.
-     * This could result in the goat's death.
+     * Look for plants adjacent to the current location.
+     * @return Where food was found, or null if it wasn't.
      */
-    private void incrementAge()
-    {
-        age++;
-        if(age > MAX_AGE) {
-            setDead();
-        }
-    }
-
-    /**
-     * Make this goat more hungry. This could result in the goat's death.
-     */
-    private void incrementHunger()
-    {
-        foodLevel--;
-        if(foodLevel <= 0) {
-            setDead();
-        }
-    }
-
     private Location findFood()
     {
         Field field = getField();
@@ -136,7 +110,7 @@ public class Goat extends Animal
                 Plant plant = (Plant) Being;
                 plant.beEaten();
                 plant.beEaten();
-                foodLevel = PLANT_FOOD_VALUE;
+                foodLevel = FOOD_VALUE;
                 return where;
             }
         }
@@ -160,28 +134,5 @@ public class Goat extends Animal
             Goat young = new Goat(false, field, loc);
             newGoats.add(young);
         }
-    }
-
-    /**
-     * Generate a number representing the number of births,
-     * if it can breed.
-     * @return The number of births (may be zero).
-     */
-    private int breed()
-    {
-        int births = 0;
-        if(canBreed() && rand.nextDouble() <= BREEDING_PROBABILITY) {
-            births = rand.nextInt(MAX_LITTER_SIZE) + 1;
-        }
-        return births;
-    }
-
-    /**
-     * A goat can breed if it has reached the breeding age.
-     * @return true if the goat can breed, false otherwise.
-     */
-    private boolean canBreed()
-    {
-        return age >= BREEDING_AGE;
     }
 }

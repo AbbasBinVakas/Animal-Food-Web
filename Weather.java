@@ -9,31 +9,31 @@ public abstract class Weather
 {
     private static final double RAIN_PROBABILITY = 0.3;
     private static final double SNOW_PROBABILITY = 0.2;
-    private static final double SUNNY_PROBABILITY = 0.5;
+    private static final double SUNNY_PROBABILITY = 1 - SNOW_PROBABILITY + RAIN_PROBABILITY;
+    // A random number generator.
+    protected static final Random rand = Randomizer.getRandom();
 
     /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     * Returns the name of the weather.
      */
-    abstract public void weatherEffect();
-    
     abstract public String returnWeatherName();
 
     public static Weather chooseWeather() {
-        Random rand = Randomizer.getRandom();
-        if(rand.nextDouble() <= RAIN_PROBABILITY) {
-            Raining rain = new Raining();
-            return rain;
+        Double randomDouble = rand.nextDouble();
+        //Weather newWeather = new Weather();
+        if(randomDouble <= RAIN_PROBABILITY) {
+            Weather newWeather = new Raining();
+            return newWeather;
         }
-        else if(rand.nextDouble() <= SNOW_PROBABILITY) {
-            Snowing snow = new Snowing();
-            return snow;
+        else if(randomDouble <= SNOW_PROBABILITY + RAIN_PROBABILITY && randomDouble > RAIN_PROBABILITY) {
+            Weather newWeather = new Snowing();
+            return newWeather;
         }
+        // else if(randomDouble <= SNOW_PROBABILITY + RAIN_PROBABILITY + SUNNY_PROBABILITY && randomDouble > SNOW_PROBABILITY + RAIN_PROBABILITY) {
         else {
-            Sunny sunny = new Sunny();
-            return sunny;
+            Weather newWeather = new Sunny();
+            return newWeather;
         }
+        //return newWeather;
     }
 }

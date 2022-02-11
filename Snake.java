@@ -23,15 +23,7 @@ public class Snake extends Animal
     private static final int MAX_LITTER_SIZE = 3;
     // The food value of a single snake. In effect, this is the
     // number of steps a snake can go before it has to eat again.
-    private static final int MICE_FOOD_VALUE = 12;
-    // A shared random number generator to control breeding.
-    private static final Random rand = Randomizer.getRandom();
-
-    // Individual characteristics (instance fields).
-    // The snake's age.
-    private int age;
-    // The snake's food level, which is increased by eating mice.
-    private int foodLevel;
+    private static final int FOOD_VALUE = 12;
 
     /**
      * Create a snake. A snake can be created as a new born (age zero
@@ -43,14 +35,14 @@ public class Snake extends Animal
      */
     public Snake(boolean randomAge, Field field, Location location)
     {
-        super(field, location);
+        super(field, location, BREEDING_AGE, MAX_AGE, BREEDING_PROBABILITY, MAX_LITTER_SIZE);
         if(randomAge) {
             age = rand.nextInt(MAX_AGE);
-            foodLevel = rand.nextInt(MICE_FOOD_VALUE);
+            foodLevel = rand.nextInt(FOOD_VALUE);
         }
         else {
             age = 0;
-            foodLevel = MICE_FOOD_VALUE;
+            foodLevel = FOOD_VALUE;
         }
     }
 
@@ -61,48 +53,56 @@ public class Snake extends Animal
      * @param field The field currently occupied.
      * @param newSnakes A list to return newly born snakes.
      */
-    public void act(List<Animal> newSnakes, boolean daytime, Weather weather)
+    public void act(List<Animal> newYoung, boolean daytime, Weather weather)
     {
-        incrementAge();
-        incrementHunger();
-        if(isAlive() && daytime) {
-            giveBirth(newSnakes);            
-            // Move towards a source of food if found.
-            Location newLocation = findFood();
-            if(newLocation == null) { 
-                // No food found - try to move to a free location.
-                newLocation = getField().freeAdjacentLocation(getLocation());
+        if(weather instanceof Sunny) { // what the animal does while it is sunny
+            incrementAge();
+            incrementHunger();
+            if(isAlive() && daytime) {
+                giveBirth(newYoung);            
+                // Move towards a source of food if found.
+                Location newLocation = findFood();
+                if(newLocation == null) { 
+                    // No food found - try to move to a free location.
+                    newLocation = getField().freeAdjacentLocation(getLocation());
+                }
+                // See if it was possible to move.
+                if(newLocation != null) {
+                    setLocation(newLocation);
+                }
+                else {
+                    // Overcrowding.
+                    setDead();
+                }
             }
-            // See if it was possible to move.
-            if(newLocation != null) {
-                setLocation(newLocation);
+            ifInfected();
+        }
+        if(weather instanceof Raining) { // what the animal does while it is raining
+            incrementAge();
+            incrementHunger();
+            if(isAlive() && !daytime) {  
+                giveBirth(newYoung);            
+                // Move towards a source of food if found.
+                Location newLocation = findFood();
+                if(newLocation == null) { 
+                    // No food found - try to move to a free location.
+                    newLocation = getField().freeAdjacentLocation(getLocation());
+                }
+                // See if it was possible to move.
+                if(newLocation != null) {
+                    setLocation(newLocation);
+                }
+                else {
+                    // Overcrowding.
+                    setDead();
+                }
             }
-            else {
-                // Overcrowding.
+            ifInfected();
+        }
+        if(weather instanceof Snowing) { // what the animal does while it is snowing
+            if(rand.nextDouble() <= SNOWING_DEATH_PROBABILITY) {
                 setDead();
             }
-        }
-    }
-
-    /**
-     * Increase the age. This could result in the snake's death.
-     */
-    private void incrementAge()
-    {
-        age++;
-        if(age > MAX_AGE) {
-            setDead();
-        }
-    }
-
-    /**
-     * Make this snake more hungry. This could result in the snake's death.
-     */
-    private void incrementHunger()
-    {
-        foodLevel--;
-        if(foodLevel <= 0) {
-            setDead();
         }
     }
 
@@ -123,7 +123,7 @@ public class Snake extends Animal
                 Mouse mouse = (Mouse) animal;
                 if(mouse.isAlive()) { 
                     mouse.setDead();
-                    foodLevel = MICE_FOOD_VALUE;
+                    foodLevel = FOOD_VALUE;
                     return where;
                 }
             }
@@ -148,27 +148,5 @@ public class Snake extends Animal
             Snake young = new Snake(false, field, loc);
             newSnakes.add(young);
         }
-    }
-
-    /**
-     * Generate a number representing the number of births,
-     * if it can breed.
-     * @return The number of births (may be zero).
-     */
-    private int breed()
-    {
-        int births = 0;
-        if(canBreed() && rand.nextDouble() <= BREEDING_PROBABILITY) {
-            births = rand.nextInt(MAX_LITTER_SIZE) + 1;
-        }
-        return births;
-    }
-
-    /**
-     * A snake can breed if it has reached the breeding age.
-     */
-    private boolean canBreed()
-    {
-        return age >= BREEDING_AGE;
     }
 }

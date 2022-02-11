@@ -17,10 +17,10 @@ public class Sunny extends Weather
         // initialise instance variables
     }
 
-    public void weatherEffect() {
-
-    }
-
+    /**
+     * Returns the name of the weather, in this case "Sunny".
+     * @return "Sunny"
+     */
     public String returnWeatherName() {
         return "Sunny";
     }
