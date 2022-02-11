@@ -14,6 +14,8 @@ public class Being
     // The being's position in the field.
     private Location location;
     
+    private boolean infected;
+    
     public Being(Field field, Location location)
     {
         this.field = field;
@@ -73,5 +75,15 @@ public class Being
     protected boolean isAlive()
     {
         return alive;
+    }
+    
+    protected boolean isInfected()
+    {
+        return infected;
+    }
+    
+    protected boolean recovered()
+    {
+        return infected = false;
     }
 }

@@ -8,6 +8,7 @@ import java.util.List;
  */
 public abstract class Animal extends Being
 {
+    private Gender gender;
     /**
      * Create a new animal at location in field.
      * 
@@ -17,6 +18,7 @@ public abstract class Animal extends Being
     public Animal(Field field, Location location)
     {
         super(field, location);
+        this.gender = gender;
     }
     
     /**

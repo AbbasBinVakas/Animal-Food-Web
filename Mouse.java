@@ -26,6 +26,8 @@ public class Mouse extends Animal
     // number of steps a mouse can go before it has to eat again.
     private static final int PLANT_FOOD_VALUE = 9;
 
+    private static final double INFECTION_DEATH_PROBABILITY = 0.3;
+
     // Individual characteristics (instance fields).
 
     // The mouse's age.
@@ -75,6 +77,18 @@ public class Mouse extends Animal
                 setDead();
             }
         }
+
+        if(isInfected()) {
+            if(rand.nextDouble() < INFECTION_DEATH_PROBABILITY) {
+                setDead();
+            }
+            else if (rand.nextDouble() == INFECTION_DEATH_PROBABILITY) {
+                recovered();
+            }
+            else if(rand.nextDouble() > INFECTION_DEATH_PROBABILITY) {
+                isInfected();
+            }
+        }
     }
 
     /**
@@ -88,7 +102,7 @@ public class Mouse extends Animal
             setDead();
         }
     }
-    
+
     /**
      * Make this mouse more hungry. This could result in the mouse's death.
      */
@@ -99,7 +113,7 @@ public class Mouse extends Animal
             setDead();
         }
     }
-    
+
     private Location findFood()
     {
         Field field = getField();

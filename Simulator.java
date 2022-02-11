@@ -32,6 +32,8 @@ public class Simulator
     private static final double TIGER_CREATION_PROBABILITY = 0.02;
     //The probability that a plant will be created in any given grid position 
     private static final double PLANT_CREATION_PROBABILITY = 0.05;
+    
+    private static final double ANIMAL_INFECTION_PROBABILITY = 0.45;
     // How many steps daytime/not daytime takes;
     private static final int DAYTIME_LENGTH = 2;
     // How long a weather effect should last;
@@ -140,13 +142,17 @@ public class Simulator
     public void simulateOneStep()
     {
         step++;
-
+        Random rand = Randomizer.getRandom();
         // Provide space for newborn animals.
         List<Animal> newAnimals = new ArrayList<>();        
         // Let all rabbits act.
         for(Iterator<Animal> it = animals.iterator(); it.hasNext(); ) {
             Animal animal = it.next();
             animal.act(newAnimals, daytime, currentWeather);
+            if(rand.nextDouble() <= ANIMAL_INFECTION_PROBABILITY)
+            {
+                animal.isInfected();
+            }
             if(! animal.isAlive()) {
                 it.remove();
             }
@@ -155,7 +161,7 @@ public class Simulator
             Plant plant = it.next();
             plant.act(daytime, currentWeather);
         }
-
+        
         // Add the newly born foxes and rabbits to the main lists.
         animals.addAll(newAnimals);
 
