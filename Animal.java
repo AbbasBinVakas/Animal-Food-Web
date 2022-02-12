@@ -24,14 +24,18 @@ public abstract class Animal extends Being
     protected static final double INFECTION_RECOVERY_PROBABILITY = 0.02;
     // The probability that the animal will die due to the snow each step.
     protected static final double SNOWING_DEATH_PROBABILITY = 0.01;
-    
+    //The probabilty that the animal will spread the infection to other animals.
     private static final double INFECTION_SPREAD_PROBABILITY = 0.35;
+    //The probabilty that the an animal will be male;
+    private static final double MALE_PROBABILITY = 0.5;
     // A random number generator.
     protected static final Random rand = Randomizer.getRandom();
     // The gender of the animal
     protected Gender gender;
     // The being's food level, which is increased by eating plants.
     protected int foodLevel;
+    
+    private boolean male;
     /**
      * Create a new animal at location in field.
      * 
@@ -50,6 +54,9 @@ public abstract class Animal extends Being
         MAX_AGE = maxAge;
         BREEDING_PROBABILITY = breedingProbability;
         MAX_LITTER_SIZE = maxLitterSize;
+        if(rand.nextDouble() <= MALE_PROBABILITY) {
+            male = true;
+        }
     }
     
     /**
@@ -137,5 +144,10 @@ public abstract class Animal extends Being
                 infected = true;
             }
         }
+    }
+    
+    public boolean isMale()
+    {
+        return male;
     }
 }

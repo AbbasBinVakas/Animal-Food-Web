@@ -24,4 +24,6 @@ comment7.target=void\ ifInfected()
 comment7.text=\n\ Things\ that\ can\ happen\ to\ the\ animal\ while\ it\ is\ infected.\n\ The\ animal\ has\ a\ chance\ to\ both\ die\ or\ recover,\ or\ it\ can\n\ remain\ infected.\n
 comment8.params=
 comment8.target=void\ spreadInfection()
-numComments=9
+comment9.params=
+comment9.target=boolean\ isMale()
+numComments=10

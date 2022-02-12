@@ -17,7 +17,6 @@ public class FieldStats
     private boolean countsValid;
     
     private Weather weather;
-
     /**
      * Construct a FieldStats object.
      */
@@ -33,7 +32,7 @@ public class FieldStats
      * Get details of what is in the field.
      * @return A string describing what is in the field.
      */
-    public String getPopulationDetails(Field field, Weather weather, int infectionRate)
+    public String getPopulationDetails(Field field, Weather weather)
     {
         StringBuffer buffer = new StringBuffer();
         if(!countsValid) {
@@ -47,7 +46,6 @@ public class FieldStats
             buffer.append(' ');
         }
         buffer.append("Weather: " + weather.returnWeatherName());
-        buffer.append("Infected: " + infectionRate.numberInfected());
         return buffer.toString();
     }
     

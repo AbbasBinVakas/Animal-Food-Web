@@ -16,7 +16,7 @@ public class Being
     protected Location location;
     // Whether the being is infected with disease or not.
     protected boolean infected;
-    protected String count;
+    protected int count;
     public Being(Field field, Location location)
     {
         this.field = field;
@@ -88,6 +88,6 @@ public class Being
         if(infected) {
             count++;
         }
-        return count;
+        return Integer.toString(count);
     }
 }

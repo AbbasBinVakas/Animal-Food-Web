@@ -21,5 +21,5 @@ comment6.text=\n\ Check\ whether\ the\ animal\ is\ alive\ or\ not.\n\ @return\ t
 comment7.params=
 comment7.target=void\ recovered()
 comment8.params=
-comment8.target=int\ numberInfected()
+comment8.target=java.lang.String\ numberInfected()
 numComments=9

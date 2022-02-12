@@ -32,7 +32,7 @@ public class Simulator
     private static final double TIGER_CREATION_PROBABILITY = 0.02;
     //The probability that a plant will be created in any given grid position 
     private static final double PLANT_CREATION_PROBABILITY = 0.05;
-    
+    //The probability that an animal will be infected with the disease.
     private static final double ANIMAL_INFECTION_PROBABILITY = 0.45;
     // How many steps daytime/not daytime takes;
     private static final int DAYTIME_LENGTH = 2;
@@ -53,8 +53,7 @@ public class Simulator
     private boolean daytime;
     // Dictates what the current weather conditions are
     private Weather currentWeather;
-    private int currentInfection;
-
+    
     /**
      * Construct a simulation field with default size.
      */
