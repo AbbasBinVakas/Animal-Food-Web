@@ -29,10 +29,10 @@ public class Gender
     // }
 
     
-    protected boolean isMale()
-    {
-        return male;
-    }
+    // protected boolean isMale()
+    // {
+        // return male;
+    // }
     
     // public void setGender(Gender gender)
     // {

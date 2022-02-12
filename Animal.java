@@ -34,8 +34,10 @@ public abstract class Animal extends Being
     protected Gender gender;
     // The being's food level, which is increased by eating plants.
     protected int foodLevel;
-    
+
     private boolean male;
+
+    private boolean isAdjacentMale;
     /**
      * Create a new animal at location in field.
      * 
@@ -58,14 +60,14 @@ public abstract class Animal extends Being
             male = true;
         }
     }
-    
+
     /**
      * Make this animal act - that is: make it do
      * whatever it wants/needs to do.
      * @param newAnimals A list to receive newly born animals.
      */
     abstract public void act(List<Animal> newAnimals, boolean daytime, Weather weather);
-    
+
     /**
      * Make this animal more hungry. This could result in the animal's death.
      */
@@ -76,7 +78,7 @@ public abstract class Animal extends Being
             setDead();
         }
     }
-    
+
     /**
      * Increase the age of the animal.
      * This could result in the animal's death.
@@ -88,7 +90,7 @@ public abstract class Animal extends Being
             setDead();
         }
     }
-    
+
     /**
      * Generate a number representing the number of births,
      * if it can breed.
@@ -98,7 +100,19 @@ public abstract class Animal extends Being
     {
         int births = 0;
         if(canBreed() && rand.nextDouble() <= BREEDING_PROBABILITY) {
-            births = rand.nextInt(MAX_LITTER_SIZE) + 1;
+            Field field = getField();
+            List<Location> adjacent = field.adjacentLocations(getLocation());
+            Iterator<Location> it = adjacent.iterator();
+            while(it.hasNext()) {
+                Location where = it.next();
+                Object animal = field.getObjectAt(where);
+                if(male && adjacent.contains(!male)) {
+                    births = rand.nextInt(MAX_LITTER_SIZE) + 1;
+                }
+                else if(!male && adjacent.contains(male)) {
+                    births = rand.nextInt(MAX_LITTER_SIZE) + 1;
+                }
+            }
         }
         return births;
     }
@@ -111,7 +125,7 @@ public abstract class Animal extends Being
     {
         return age >= BREEDING_AGE;
     }
-    
+
     /**
      * Things that can happen to the animal while it is infected.
      * The animal has a chance to both die or recover, or it can
@@ -125,15 +139,15 @@ public abstract class Animal extends Being
         }
         if(infected) {  
             if(randomDouble <= INFECTION_DEATH_PROBABILITY) {
-                    setDead();
+                setDead();
             }
             else if (randomDouble <= INFECTION_RECOVERY_PROBABILITY + INFECTION_DEATH_PROBABILITY && randomDouble > INFECTION_DEATH_PROBABILITY) {
-                    recovered();
+                recovered();
             }
             // Otherwise the animal will stay alive but still infected
         }
     }
-    
+
     private void spreadInfection()
     {
         Field field = getField();
@@ -148,7 +162,7 @@ public abstract class Animal extends Being
             }
         }
     }
-    
+
     public boolean isMale()
     {
         return male;
