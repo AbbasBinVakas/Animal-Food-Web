@@ -20,7 +20,7 @@ public class Tiger extends Animal
     // The likelihood of a tiger breeding.
     private static final double BREEDING_PROBABILITY = 0.13;
     // The maximum number of births.
-    private static final int MAX_LITTER_SIZE = 1;
+    private static final int MAX_LITTER_SIZE = 2;
     // The food value of a single tiger. In effect, this is the
     // number of steps a tiger can go before it has to eat again.
     private static final int FOOD_VALUE = 30;

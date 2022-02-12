@@ -15,9 +15,9 @@ public class Simulator
 {
     // Constants representing configuration information for the simulation.
     // The default width for the grid.
-    private static final int DEFAULT_WIDTH = 120;
+    private static final int DEFAULT_WIDTH = 180;
     // The default depth of the grid.
-    private static final int DEFAULT_DEPTH = 80;
+    private static final int DEFAULT_DEPTH = 120;
     // The probability that a snake will be created in any given grid position.
     private static final double SNAKE_CREATION_PROBABILITY = 0.03;
     // The probability that a mouse will be created in any given grid position.
@@ -32,8 +32,6 @@ public class Simulator
     private static final double TIGER_CREATION_PROBABILITY = 0.02;
     //The probability that a plant will be created in any given grid position 
     private static final double PLANT_CREATION_PROBABILITY = 0.05;
-    //The probability that an animal will be infected with the disease.
-    private static final double ANIMAL_INFECTION_PROBABILITY = 0.45;
     // How many steps daytime/not daytime takes;
     private static final int DAYTIME_LENGTH = 2;
     // How long a weather effect should last;
@@ -53,6 +51,12 @@ public class Simulator
     private boolean daytime;
     // Dictates what the current weather conditions are
     private Weather currentWeather;
+    // Counts the total number of infected animals
+    private int numberOfInfectedAnimals;
+    // Counts the total number of male animals
+    private int maleAnimals;
+    // Counts the total number of female animals
+    private int femaleAnimals;
     
     /**
      * Construct a simulation field with default size.
@@ -91,6 +95,9 @@ public class Simulator
         view.setColor(Plant.class, Color.GREEN);
         
         currentWeather = currentWeather.chooseWeather();
+        numberOfInfectedAnimals = 0;
+        maleAnimals = 0;
+        femaleAnimals = 0;
 
         // Setup a valid starting point.
         reset();
@@ -128,7 +135,7 @@ public class Simulator
             if (step % DAYTIME_LENGTH == 0) {
                 daytime = !daytime;
             }
-            if (step % WEATHER_LENGTH == 0 ) {
+            if (step % WEATHER_LENGTH == 0) {
                 currentWeather = Weather.chooseWeather();
             }
         }
@@ -145,10 +152,19 @@ public class Simulator
         Random rand = Randomizer.getRandom();
         // Provide space for newborn animals.
         List<Animal> newAnimals = new ArrayList<>();        
-        // Let all rabbits act.
+        // Counts the number of infected animals
         for(Iterator<Animal> it = animals.iterator(); it.hasNext(); ) {
             Animal animal = it.next();
             animal.act(newAnimals, daytime, currentWeather);
+            if(animal.isInfected()) {
+                numberOfInfectedAnimals++;
+            }
+            if(animal.isMale()) {
+                maleAnimals++;
+            }
+            else {
+                femaleAnimals++;
+            }
             if(!animal.isAlive()) {
                 it.remove();
             }
@@ -161,7 +177,10 @@ public class Simulator
         // Add the newly born foxes and rabbits to the main lists.
         animals.addAll(newAnimals);
 
-        view.showStatus(step, field, currentWeather);
+        view.showStatus(step, field, currentWeather, numberOfInfectedAnimals, maleAnimals, femaleAnimals);
+        numberOfInfectedAnimals = 0;
+        maleAnimals = 0;
+        femaleAnimals = 0;
     }
 
     /**
@@ -172,10 +191,15 @@ public class Simulator
         step = 0;
         animals.clear();
         plants.clear();
+        numberOfInfectedAnimals = 0;
+        maleAnimals = 0;
+        femaleAnimals = 0;
         populate();
+        
+        
 
         // Show the starting state in the view.
-        view.showStatus(step, field, currentWeather);
+        view.showStatus(step, field, currentWeather, numberOfInfectedAnimals, maleAnimals, femaleAnimals);
     }
 
     /**
@@ -185,6 +209,7 @@ public class Simulator
     {
         Random rand = Randomizer.getRandom();
         field.clear();
+        currentWeather = Weather.chooseWeather();
         for(int row = 0; row < field.getDepth(); row++) {
             for(int col = 0; col < field.getWidth(); col++) {
                 if(rand.nextDouble() <= SNAKE_CREATION_PROBABILITY) {

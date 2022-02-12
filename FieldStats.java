@@ -32,7 +32,7 @@ public class FieldStats
      * Get details of what is in the field.
      * @return A string describing what is in the field.
      */
-    public String getPopulationDetails(Field field, Weather weather)
+    public String getPopulationDetails(Field field, Weather weather, int numberOfInfectedAnimals, int maleAnimals, int femaleAnimals)
     {
         StringBuffer buffer = new StringBuffer();
         if(!countsValid) {
@@ -43,9 +43,15 @@ public class FieldStats
             buffer.append(info.getName());
             buffer.append(": ");
             buffer.append(info.getCount());
-            buffer.append(' ');
+            buffer.append(" | ");
         }
         buffer.append("Weather: " + weather.returnWeatherName());
+        buffer.append(" | ");
+        buffer.append("Infected: " + Integer.toString(numberOfInfectedAnimals));
+        buffer.append(" | ");
+        buffer.append("Male Animals: " + Integer.toString(maleAnimals));
+        buffer.append(" | ");
+        buffer.append("Female Animals: " + Integer.toString(femaleAnimals));
         return buffer.toString();
     }
     

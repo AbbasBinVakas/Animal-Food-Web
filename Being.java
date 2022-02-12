@@ -6,6 +6,10 @@
  */
 public class Being
 {
+    // The probability that the animal will become infected each step.
+    protected static final double INFECTION_PROBABILITY = 0.05;
+    
+    
     // Whether the animal is alive or not.
     protected boolean alive;
     // The being's age.
@@ -16,7 +20,7 @@ public class Being
     protected Location location;
     // Whether the being is infected with disease or not.
     protected boolean infected;
-    protected int count;
+    
     public Being(Field field, Location location)
     {
         this.field = field;
@@ -83,11 +87,8 @@ public class Being
         infected = false;
     }
     
-    public String numberInfected()
+    public boolean isInfected()
     {
-        if(infected) {
-            count++;
-        }
-        return Integer.toString(count);
+        return infected;
     }
 }

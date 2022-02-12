@@ -119,8 +119,11 @@ public abstract class Animal extends Being
      */
     public void ifInfected()
     {
-        if(infected) {
-            Double randomDouble = rand.nextDouble();    
+        Double randomDouble = rand.nextDouble();
+        if(randomDouble <= INFECTION_PROBABILITY) {
+            infected = true;
+        }
+        if(infected) {  
             if(randomDouble <= INFECTION_DEATH_PROBABILITY) {
                     setDead();
             }
