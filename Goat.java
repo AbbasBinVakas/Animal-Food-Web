@@ -6,13 +6,14 @@ import java.util.Iterator;
  * A simple model of a goat.
  * Goats age, move, breed, and die.
  * 
- * @author Abbas BinVakas
- * @version 2020/07/02
+ * Abbas BinVakas and Mohamed Shazeen Shaheen Nazeer
+ * K21086651 and K21013731
+ * @version 12/02/2022
  */
 public class Goat extends Animal
 {
     // Characteristics shared by all goats (class variables).
-
+ 
     // The age at which a goat can start to breed.
     private static final int BREEDING_AGE = 10;
     // The age to which a goat can live.
@@ -49,7 +50,9 @@ public class Goat extends Animal
     /**
      * This is what the goat does most of the time - it runs 
      * around. Sometimes it will breed or die of old age.
-     * @param newGoats A list to return newly born goats.
+     * @param newYoung A list to return newly born goats.
+     * @param daytime If true, time of day is daytime.
+     * @param weather The weather condition.
      */
     public void act(List<Animal> newYoung, boolean daytime, Weather weather)
     {
@@ -70,6 +73,7 @@ public class Goat extends Animal
             }
             ifInfected();
         }
+        
         if(weather instanceof Raining) { // what the animal does while it is raining
             incrementAge();
             incrementHunger();
@@ -87,6 +91,7 @@ public class Goat extends Animal
             }
             ifInfected();
         }
+        
         if(weather instanceof Snowing) { // what the animal does while it is snowing
             if(rand.nextDouble() <= SNOWING_DEATH_PROBABILITY) {
                 setDead();

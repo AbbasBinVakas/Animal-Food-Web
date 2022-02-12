@@ -1,15 +1,16 @@
 /**
  * Represent a location in a rectangular grid.
  * 
- * @author David J. Barnes and Michael Kölling
- * @version 2016.02.29
+ * @author David J. Barnes and Michael Kölling and
+ * Abbas BinVakas and Mohamed Shazeen Shaheen Nazeer
+ * K21086651 and K21013731
+ * @version 12/02/2022
  */
 public class Location
 {
     // Row and column positions.
     private int row;
     private int col;
-
     /**
      * Represent a row and column.
      * @param row The row.
@@ -23,6 +24,8 @@ public class Location
     
     /**
      * Implement content equality.
+     * @return If equal to the input parameter.
+     * @param true If equals to obj, false otherwise.
      */
     public boolean equals(Object obj)
     {

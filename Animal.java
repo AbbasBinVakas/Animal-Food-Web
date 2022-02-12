@@ -3,10 +3,13 @@ import java.util.Random;
 import java.util.Iterator;
 
 /**
+ * The animal class is a subclass of the Being class.
  * A class representing shared characteristics of animals.
  * 
- * @author David J. Barnes and Michael Kölling
- * @version 2016.02.29 (2)
+ * @author David J. Barnes and Michael Kölling and 
+ * Abbas BinVakas and Mohamed Shazeen Shaheen Nazeer
+ * K21086651 and K21013731
+ * @version 12/02/2022
  */
 public abstract class Animal extends Being
 {
@@ -30,13 +33,10 @@ public abstract class Animal extends Being
     private static final double MALE_PROBABILITY = 0.5;
     // A random number generator.
     protected static final Random rand = Randomizer.getRandom();
-    // The gender of the animal
-    protected Gender gender;
+    
     // The being's food level, which is increased by eating plants.
     protected int foodLevel;
-
     protected boolean male;
-
     private boolean isAdjacentMale;
     /**
      * Create a new animal at location in field.
@@ -51,7 +51,6 @@ public abstract class Animal extends Being
     public Animal(Field field, Location location, int breedingAge, int maxAge, double breedingProbability, int maxLitterSize)
     {
         super(field, location);
-        this.gender = gender;
         BREEDING_AGE = breedingAge;
         MAX_AGE = maxAge;
         BREEDING_PROBABILITY = breedingProbability;
@@ -65,6 +64,8 @@ public abstract class Animal extends Being
      * Make this animal act - that is: make it do
      * whatever it wants/needs to do.
      * @param newAnimals A list to receive newly born animals.
+     * @param daytime The time of the day.
+     * @param weather The weather condition.
      */
     abstract public void act(List<Animal> newAnimals, boolean daytime, Weather weather);
 
@@ -90,34 +91,6 @@ public abstract class Animal extends Being
             setDead();
         }
     }
-
-    // /**
-     // * Generate a number representing the number of births,
-     // * if it can breed.
-     // * @return The number of births (may be zero).
-     // */
-    // protected int breed()
-    // {
-        // int births = 0;
-        // if(canBreed() && rand.nextDouble() <= BREEDING_PROBABILITY) {
-            // Field field = getField();
-            // List<Location> adjacent = field.adjacentLocations(getLocation());
-            // Iterator<Location> it = adjacent.iterator();
-            // while(it.hasNext()) {
-                // Location where = it.next();
-                // Object Being = field.getObjectAt(where);
-                // if(Being instanceof Mouse) {
-                    // if(male && adjacent.contains(!male)) {
-                        // births = rand.nextInt(MAX_LITTER_SIZE) + 1;
-                    // }
-                    // else if(!male && adjacent.contains(male)) {
-                        // births = rand.nextInt(MAX_LITTER_SIZE) + 1;
-                    // }
-                // }
-            // }
-        // }
-        // return births;
-    // }
 
     /**
      * An animal can breed if it has reached the breeding age.
@@ -149,7 +122,13 @@ public abstract class Animal extends Being
             // Otherwise the animal will stay alive but still infected
         }
     }
-
+    
+    /**
+     * Things that can happen when an animal is infected and it comes 
+     * in contact with other animals.
+     * There is a chance of other animals becoming infected if it comes 
+     * in contact.
+     */
     private void spreadInfection()
     {
         Field field = getField();
@@ -165,6 +144,10 @@ public abstract class Animal extends Being
         }
     }
 
+    /**
+     * Checks is an animal is male.
+     * @return true If the animal is a male.
+     */
     public boolean isMale()
     {
         return male;

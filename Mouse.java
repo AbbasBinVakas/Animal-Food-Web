@@ -5,13 +5,14 @@ import java.util.Iterator;
  * A simple model of a mouse.
  * Mice age, move, breed, and die.
  * 
- * @author Abbas BinVakas
- * @version 2020/07/02
+ * Abbas BinVakas and Mohamed Shazeen Shaheen Nazeer
+ * K21086651 and K21013731
+ * @version 12/02/2022
  */
 public class Mouse extends Animal
 {
     // Characteristics shared by all mice (class variables).
-
+ 
     // The age at which a mouse can start to breed.
     private static final int BREEDING_AGE = 3;
     // The age to which a mouse can live.
@@ -48,7 +49,9 @@ public class Mouse extends Animal
     /**
      * This is what the mouse does most of the time - it runs 
      * around. Sometimes it will breed or die of old age.
-     * @param newMice A list to return newly born mice.
+     * @param newYoung A list to return newly born mice.
+     * @param daytime If true, time of day is daytime.
+     * @param weather The weather condition.
      */
     public void act(List<Animal> newYoung, boolean daytime, Weather weather)
     {
@@ -69,6 +72,7 @@ public class Mouse extends Animal
             }
             ifInfected();
         }
+        
         if(weather instanceof Raining) { // what the animal does while it is raining
             incrementAge();
             incrementHunger();
@@ -86,6 +90,7 @@ public class Mouse extends Animal
             }
             ifInfected();
         }
+        
         if(weather instanceof Snowing) { // what the animal does while it is snowing
             if(rand.nextDouble() <= SNOWING_DEATH_PROBABILITY) {
                 setDead();
@@ -136,7 +141,7 @@ public class Mouse extends Animal
     /**
      * Generate a number representing the number of births,
      * if it can breed.
-     * @return The number of births (may be zero).
+     * @return The number of births (can be zero).
      */
     protected int breed()
     {

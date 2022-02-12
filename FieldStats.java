@@ -6,8 +6,10 @@ import java.util.HashMap;
  * of a field. It is flexible: it will create and maintain a counter 
  * for any class of object that is found within the field.
  * 
- * @author David J. Barnes and Michael Kölling
- * @version 2016.02.29
+ * @author David J. Barnes and Michael Kölling and 
+ * Abbas BinVakas and Mohamed Shazeen Shaheen Nazeer
+ * K21086651 and K21013731
+ * @version 12/02/2022
  */
 public class FieldStats
 {
@@ -15,7 +17,6 @@ public class FieldStats
     private HashMap<Class, Counter> counters;
     // Whether the counters are currently up to date.
     private boolean countsValid;
-    
     private Weather weather;
     /**
      * Construct a FieldStats object.
@@ -31,6 +32,11 @@ public class FieldStats
     /**
      * Get details of what is in the field.
      * @return A string describing what is in the field.
+     * @param field The field whose status is to be displayed.
+     * @param weather The weather condition.
+     * @param numberOfInfectedAnimals The number of animals that are infected.
+     * @param maleAnimals The number of male animals.
+     * @param femaleAnimals The number of female animals.
      */
     public String getPopulationDetails(Field field, Weather weather, int numberOfInfectedAnimals, int maleAnimals, int femaleAnimals)
     {
@@ -96,6 +102,7 @@ public class FieldStats
      * Determine whether the simulation is still viable.
      * I.e., should it continue to run.
      * @return true If there is more than one species alive.
+     * @param field The field whose status is to be checked if viable.
      */
     public boolean isViable(Field field)
     {

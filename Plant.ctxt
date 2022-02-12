@@ -1,15 +1,19 @@
 #BlueJ class context
 comment0.target=Plant
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ Plant\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\n\ The\ plant\ class\ is\ a\ subclass\ of\ the\ Being\ class.\n\ Plants\ can\ grow\ and\ be\ eaten\ by\ some\ animals.\n\n\ Abbas\ BinVakas\ and\ Mohamed\ Shazeen\ Shaheen\ Nazeer\n\ K21086651\ and\ K21013731\n\ @version\ 12/02/2022\n
 comment1.params=randomHeight\ field\ location
 comment1.target=Plant(boolean,\ Field,\ Location)
-comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Plant\r\n
+comment1.text=\n\ @param\ randomHeight\ If\ true,\ the\ plant\ will\ have\ a\ random\ height.\n\ @param\ field\ The\ field\ currently\ occupied.\n\ @param\ location\ The\ locations\ on\ the\ field.\n
 comment2.params=
 comment2.target=void\ incrementHeight()
+comment2.text=\n\ Used\ to\ increase\ the\ height\ of\ the\ plants\ until\ it\ \n\ reaches\ max\ height.\n
 comment3.params=daytime\ weather
 comment3.target=void\ act(boolean,\ Weather)
+comment3.text=\n\ @param\ daytime\ The\ time\ of\ the\ day.\n\ @param\ weather\ The\ weather\ condition.\n
 comment4.params=
 comment4.target=void\ beEaten()
+comment4.text=\n\ What\ happens\ when\ the\ plant\ is\ eaten\ by\ an\ animal\n
 comment5.params=
 comment5.target=int\ returnHeight()
+comment5.text=\n\ @return\ The\ height\ of\ the\ plant.\n
 numComments=6

@@ -5,11 +5,13 @@ import java.util.Iterator;
 import java.awt.Color;
 
 /**
- * A simple predator-prey simulator, based on a rectangular field
- * containing mice, goats, owls, snakes, lions and tigers.
+ * A predator-prey simulator, based on a rectangular field
+ * containing mice, goats, owls, snakes, lions,tigers and plants.
  * 
- * @author Abbas BinVakas
- * @version 2020/07/02
+ * @author David J. Barnes and Michael Kölling and 
+ * Abbas BinVakas and Mohamed Shazeen Shaheen Nazeer
+ * K21086651 and K21013731
+ * @version 12/02/2022
  */
 public class Simulator
 {
@@ -118,7 +120,6 @@ public class Simulator
      */
     public void runLongSimulation()
     {
-        //used to be 4000 steps before
         simulate(1000);
     }
 

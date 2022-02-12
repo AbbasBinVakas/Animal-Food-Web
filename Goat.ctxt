@@ -1,19 +1,19 @@
 #BlueJ class context
 comment0.target=Goat
-comment0.text=\r\n\ A\ simple\ model\ of\ a\ goat.\r\n\ Goats\ age,\ move,\ breed,\ and\ die.\r\n\ \r\n\ @author\ Abbas\ BinVakas\r\n\ @version\ 2020/07/02\r\n
+comment0.text=\n\ A\ simple\ model\ of\ a\ goat.\n\ Goats\ age,\ move,\ breed,\ and\ die.\n\ \n\ Abbas\ BinVakas\ and\ Mohamed\ Shazeen\ Shaheen\ Nazeer\n\ K21086651\ and\ K21013731\n\ @version\ 12/02/2022\n
 comment1.params=randomAge\ field\ location
 comment1.target=Goat(boolean,\ Field,\ Location)
-comment1.text=\r\n\ Create\ a\ new\ goat.\ A\ goat\ may\ be\ created\ with\ age\r\n\ zero\ (a\ new\ born)\ or\ with\ a\ random\ age.\r\n\ \r\n\ @param\ randomAge\ If\ true,\ the\ goat\ will\ have\ a\ random\ age.\r\n\ @param\ field\ The\ field\ currently\ occupied.\r\n\ @param\ location\ The\ location\ within\ the\ field.\r\n
+comment1.text=\n\ Create\ a\ new\ goat.\ A\ goat\ may\ be\ created\ with\ age\n\ zero\ (a\ new\ born)\ or\ with\ a\ random\ age.\n\ \n\ @param\ randomAge\ If\ true,\ the\ goat\ will\ have\ a\ random\ age.\n\ @param\ field\ The\ field\ currently\ occupied.\n\ @param\ location\ The\ location\ within\ the\ field.\n
 comment2.params=newYoung\ daytime\ weather
 comment2.target=void\ act(java.util.List,\ boolean,\ Weather)
-comment2.text=\r\n\ This\ is\ what\ the\ goat\ does\ most\ of\ the\ time\ -\ it\ runs\ \r\n\ around.\ Sometimes\ it\ will\ breed\ or\ die\ of\ old\ age.\r\n\ @param\ newGoats\ A\ list\ to\ return\ newly\ born\ goats.\r\n
+comment2.text=\n\ This\ is\ what\ the\ goat\ does\ most\ of\ the\ time\ -\ it\ runs\ \n\ around.\ Sometimes\ it\ will\ breed\ or\ die\ of\ old\ age.\n\ @param\ newYoung\ A\ list\ to\ return\ newly\ born\ goats.\n\ @param\ daytime\ If\ true,\ time\ of\ day\ is\ daytime.\n\ @param\ weather\ The\ weather\ condition.\n
 comment3.params=
 comment3.target=void\ findFood()
-comment3.text=\r\n\ Look\ for\ plants\ adjacent\ to\ the\ current\ location.\r\n
+comment3.text=\n\ Look\ for\ plants\ adjacent\ to\ the\ current\ location.\n
 comment4.params=newGoats
 comment4.target=void\ giveBirth(java.util.List)
-comment4.text=\r\n\ Check\ whether\ or\ not\ this\ goat\ is\ to\ give\ birth\ at\ this\ step.\r\n\ New\ births\ will\ be\ made\ into\ free\ adjacent\ locations.\r\n\ @param\ newGoats\ A\ list\ to\ return\ newly\ born\ goats.\r\n
+comment4.text=\n\ Check\ whether\ or\ not\ this\ goat\ is\ to\ give\ birth\ at\ this\ step.\n\ New\ births\ will\ be\ made\ into\ free\ adjacent\ locations.\n\ @param\ newGoats\ A\ list\ to\ return\ newly\ born\ goats.\n
 comment5.params=
 comment5.target=int\ breed()
-comment5.text=\r\n\ Generate\ a\ number\ representing\ the\ number\ of\ births,\r\n\ if\ it\ can\ breed.\r\n\ @return\ The\ number\ of\ births\ (may\ be\ zero).\r\n
+comment5.text=\n\ Generate\ a\ number\ representing\ the\ number\ of\ births,\n\ if\ it\ can\ breed.\n\ @return\ The\ number\ of\ births\ (may\ be\ zero).\n
 numComments=6

@@ -11,8 +11,10 @@ import java.util.Map;
  * Colors for each type of species can be defined using the
  * setColor method.
  * 
- * @author David J. Barnes and Michael Kölling
- * @version 2016.02.29
+ * @author David J. Barnes and Michael Kölling and
+ * Abbas BinVakas and Mohamed Shazeen Shaheen Nazeer
+ * K21086651 and K21013731
+ * @version 12/02/2022
  */
 public class SimulatorView extends JFrame
 {
@@ -21,9 +23,10 @@ public class SimulatorView extends JFrame
 
     // Color used for objects that have no defined color.
     private static final Color UNKNOWN_COLOR = Color.gray;
-
+    // Prefixes for displaying information on GUI.
     private final String STEP_PREFIX = "Step: ";
     private final String POPULATION_PREFIX = "Population: ";
+    
     private JLabel stepLabel, population, infoLabel;
     private FieldView fieldView;
 
@@ -75,6 +78,7 @@ public class SimulatorView extends JFrame
 
     /**
      * Display a short information label at the top of the window.
+     * @param text The text that will be displayed.
      */
     public void setInfoText(String text)
     {
@@ -83,6 +87,7 @@ public class SimulatorView extends JFrame
 
     /**
      * @return The color to be used for a given class of animal.
+     * @param animalClass The animal's Class object.
      */
     private Color getColor(Class animalClass)
     {
@@ -100,6 +105,9 @@ public class SimulatorView extends JFrame
      * Show the current status of the field.
      * @param step Which iteration step it is.
      * @param field The field whose status is to be displayed.
+     * @param numberOfInfectedAnimals The number of animals that are infected.
+     * @param maleAnimals The number of male animals.
+     * @param femaleAnimals The number of female animals.
      */
     public void showStatus(int step, Field field, Weather weather, int numberOfInfectedAnimals, int maleAnimals, int femaleAnimals)
     {
@@ -133,6 +141,7 @@ public class SimulatorView extends JFrame
     /**
      * Determine whether the simulation should continue to run.
      * @return true If there is more than one species alive.
+     * @param field The field whose status is to be displayed.
      */
     public boolean isViable(Field field)
     {
@@ -159,6 +168,8 @@ public class SimulatorView extends JFrame
 
         /**
          * Create a new FieldView component.
+         * @param height The grid height 
+         * @param width The grid width
          */
         public FieldView(int height, int width)
         {
@@ -169,6 +180,7 @@ public class SimulatorView extends JFrame
 
         /**
          * Tell the GUI manager how big we would like to be.
+         * @return The dimension of the grid.
          */
         public Dimension getPreferredSize()
         {
@@ -200,6 +212,9 @@ public class SimulatorView extends JFrame
 
         /**
          * Paint on grid location on this field in a given color.
+         * @param x The x-coordiantes
+         * @param y The y-coordinates
+         * @param color The color to be given to the class.
          */
         public void drawMark(int x, int y, Color color)
         {
@@ -210,6 +225,7 @@ public class SimulatorView extends JFrame
         /**
          * The field view component needs to be redisplayed. Copy the
          * internal image to screen.
+         * @param g
          */
         public void paintComponent(Graphics g)
         {

@@ -6,13 +6,14 @@ import java.util.Random;
  * A simple model of a snake.
  * Lions age, move, eat goats, and die.
  * 
- * @author Abbas BinVakas
- * @version 2020/07/02
+ * Abbas BinVakas and Mohamed Shazeen Shaheen Nazeer
+ * K21086651 and K21013731
+ * @version 12/02/2022
  */
 public class Lion extends Animal
 {
     // Characteristics shared by all lions (class variables).
-
+ 
     // The age at which a lion can start to breed.
     private static final int BREEDING_AGE = 28;
     // The age to which a lion can live.
@@ -50,8 +51,9 @@ public class Lion extends Animal
      * This is what the lion does most of the time: it hunts for
      * goats. In the process, it might breed, die of hunger,
      * or die of old age.
-     * @param field The field currently occupied.
-     * @param newLions A list to return newly born lions.
+     * @param newYoung A list to return newly born lions.
+     * @param daytime If true, time of day is daytime.
+     * @param weather The weather condition.
      */
     public void act(List<Animal> newYoung, boolean daytime, Weather weather)
     {
@@ -77,6 +79,7 @@ public class Lion extends Animal
             }
             ifInfected();
         }
+        
         if(weather instanceof Raining) { // what the animal does while it is raining
             incrementAge();
             incrementHunger();
@@ -99,6 +102,7 @@ public class Lion extends Animal
             }
             ifInfected();
         }
+        
         if(weather instanceof Snowing) { // what the animal does while it is snowing
             if(rand.nextDouble() <= SNOWING_DEATH_PROBABILITY) {
                 setDead();

@@ -1,14 +1,15 @@
 /**
- * Write a description of class Beings here.
+ * The Being superclass is the main class that simulates the living beings 
+ * such as the plants and animals.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * Abbas BinVakas and Mohamed Shazeen Shaheen Nazeer
+ * K21086651 and K21013731
+ * @version 12/02/2022
  */
 public class Being
 {
     // The probability that the animal will become infected each step.
     protected static final double INFECTION_PROBABILITY = 0.05;
-    
     
     // Whether the animal is alive or not.
     protected boolean alive;
@@ -21,6 +22,10 @@ public class Being
     // Whether the being is infected with disease or not.
     protected boolean infected;
     
+    /**
+     * @param field The field whose status is to be displayed.
+     * @param location The locations on the field.
+     */
     public Being(Field field, Location location)
     {
         this.field = field;
@@ -75,18 +80,25 @@ public class Being
     
     /**
      * Check whether the animal is alive or not.
-     * @return true if the animal is still alive.
+     * @return true If the animal is still alive.
      */
     protected boolean isAlive()
     {
         return alive;
     }
     
+    /**
+     * Remove infection if the animal has recovered.
+     */
     protected void recovered()
     {
         infected = false;
     }
     
+    /**
+     * Check whether the animal is infected or not.
+     * @return true If the animal is infected.
+     */
     public boolean isInfected()
     {
         return infected;
