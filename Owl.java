@@ -18,12 +18,12 @@ public class Owl extends Animal
     // The age to which a owl can live.
     private static final int MAX_AGE = 100;
     // The likelihood of a owl breeding.
-    private static final double BREEDING_PROBABILITY = 0.28;
+    private static final double BREEDING_PROBABILITY = 0.27;
     // The maximum number of births.
     private static final int MAX_LITTER_SIZE = 5;
     // The food value of a single owl. In effect, this is the
     // number of steps a owl can go before it has to eat again.
-    private static final int FOOD_VALUE = 10;
+    private static final int FOOD_VALUE = 25;
 
     /**
      * Create an owl. An owl can be created as a new born (age zero
@@ -146,5 +146,34 @@ public class Owl extends Animal
             Owl young = new Owl(false, field, loc);
             newOwls.add(young);
         }
+    }
+    
+    /**
+     * Generate a number representing the number of births,
+     * if it can breed.
+     * @return The number of births (may be zero).
+     */
+    protected int breed()
+    {
+        int births = 0;
+        if(canBreed() && rand.nextDouble() <= BREEDING_PROBABILITY) {
+            Field field = getField();
+            List<Location> adjacent = field.adjacentLocations(getLocation());
+            Iterator<Location> it = adjacent.iterator();
+            while(it.hasNext()) {
+                Location where = it.next();
+                Object Being = field.getObjectAt(where);
+                if(Being instanceof Owl) {
+                    Owl owl = (Owl) Being;
+                    if(male && !owl.isMale()) {
+                        births = rand.nextInt(MAX_LITTER_SIZE) + 1;
+                    }
+                    else if(!male && owl.isMale()) {
+                        births = rand.nextInt(MAX_LITTER_SIZE) + 1;
+                    }
+                }
+            }
+        }
+        return births;
     }
 }

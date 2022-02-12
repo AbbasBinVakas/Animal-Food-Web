@@ -16,14 +16,14 @@ public class Goat extends Animal
     // The age at which a goat can start to breed.
     private static final int BREEDING_AGE = 10;
     // The age to which a goat can live.
-    private static final int MAX_AGE = 30;
+    private static final int MAX_AGE = 50;
     // The likelihood of a goat breeding.
-    private static final double BREEDING_PROBABILITY = 0.18;
+    private static final double BREEDING_PROBABILITY = 0.52;
     // The maximum number of births.
-    private static final int MAX_LITTER_SIZE = 3;
+    private static final int MAX_LITTER_SIZE = 5;
     // The food value of a single goat. In effect, this is the
     // number of steps a goat can go before it has to eat again.
-    private static final int FOOD_VALUE = 12;
+    private static final int FOOD_VALUE = 13;
 
     /**
      * Create a new goat. A goat may be created with age
@@ -96,9 +96,8 @@ public class Goat extends Animal
 
     /**
      * Look for plants adjacent to the current location.
-     * @return Where food was found, or null if it wasn't.
      */
-    private Location findFood()
+    private void findFood()
     {
         Field field = getField();
         List<Location> adjacent = field.adjacentLocations(getLocation());
@@ -111,10 +110,8 @@ public class Goat extends Animal
                 plant.beEaten();
                 plant.beEaten();
                 foodLevel = FOOD_VALUE;
-                return where;
             }
         }
-        return null;
     }
 
     /**
@@ -134,5 +131,34 @@ public class Goat extends Animal
             Goat young = new Goat(false, field, loc);
             newGoats.add(young);
         }
+    }
+    
+    /**
+     * Generate a number representing the number of births,
+     * if it can breed.
+     * @return The number of births (may be zero).
+     */
+    protected int breed()
+    {
+        int births = 0;
+        if(canBreed() && rand.nextDouble() <= BREEDING_PROBABILITY) {
+            Field field = getField();
+            List<Location> adjacent = field.adjacentLocations(getLocation());
+            Iterator<Location> it = adjacent.iterator();
+            while(it.hasNext()) {
+                Location where = it.next();
+                Object Being = field.getObjectAt(where);
+                if(Being instanceof Goat) {
+                    Goat goat = (Goat) Being;
+                    if(male && !goat.isMale()) {
+                        births = rand.nextInt(MAX_LITTER_SIZE) + 1;
+                    }
+                    else if(!male && goat.isMale()) {
+                        births = rand.nextInt(MAX_LITTER_SIZE) + 1;
+                    }
+                }
+            }
+        }
+        return births;
     }
 }

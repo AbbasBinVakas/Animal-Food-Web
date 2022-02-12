@@ -15,14 +15,14 @@ public class Mouse extends Animal
     // The age at which a mouse can start to breed.
     private static final int BREEDING_AGE = 3;
     // The age to which a mouse can live.
-    private static final int MAX_AGE = 10;
+    private static final int MAX_AGE = 12;
     // The likelihood of a mouse breeding.
-    private static final double BREEDING_PROBABILITY = 0.40;
+    private static final double BREEDING_PROBABILITY = 0.31;
     // The maximum number of births.
-    private static final int MAX_LITTER_SIZE = 15;
+    private static final int MAX_LITTER_SIZE = 12;
     // The food value of a single moues. In effect, this is the
     // number of steps a mouse can go before it has to eat again.
-    private static final int FOOD_VALUE = 9;
+    private static final int FOOD_VALUE = 6;
 
     /**
      * Create a new mouse. A mouse may be created with age
@@ -95,9 +95,8 @@ public class Mouse extends Animal
 
     /**
      * Look for plants adjacent to the current location.
-     * @return Where food was found, or null if it wasn't.
      */
-    private Location findFood()
+    private void findFood()
     {
         Field field = getField();
         List<Location> adjacent = field.adjacentLocations(getLocation());
@@ -107,12 +106,12 @@ public class Mouse extends Animal
             Object Being = field.getObjectAt(where);
             if(Being instanceof Plant) {
                 Plant plant = (Plant) Being;
-                plant.beEaten();
-                foodLevel = FOOD_VALUE;
-                return where;
+                if(plant.returnHeight() > 0) {
+                    plant.beEaten();
+                    foodLevel = FOOD_VALUE;
+                }
             }
         }
-        return null;
     }
 
     /**
@@ -132,5 +131,34 @@ public class Mouse extends Animal
             Mouse young = new Mouse(false, field, loc);
             newMice.add(young);
         }
+    }
+
+    /**
+     * Generate a number representing the number of births,
+     * if it can breed.
+     * @return The number of births (may be zero).
+     */
+    protected int breed()
+    {
+        int births = 0;
+        if(canBreed() && rand.nextDouble() <= BREEDING_PROBABILITY) {
+            Field field = getField();
+            List<Location> adjacent = field.adjacentLocations(getLocation());
+            Iterator<Location> it = adjacent.iterator();
+            while(it.hasNext()) {
+                Location where = it.next();
+                Object Being = field.getObjectAt(where);
+                if(Being instanceof Mouse) {
+                    Mouse mouse = (Mouse) Being;
+                    if(male && !mouse.isMale()) {
+                        births = rand.nextInt(MAX_LITTER_SIZE) + 1;
+                    }
+                    else if(!male && mouse.isMale()) {
+                        births = rand.nextInt(MAX_LITTER_SIZE) + 1;
+                    }
+                }
+            }
+        }
+        return births;
     }
 }

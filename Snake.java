@@ -14,16 +14,16 @@ public class Snake extends Animal
     // Characteristics shared by all snakes (class variables).
 
     // The age at which a snake can start to breed.
-    private static final int BREEDING_AGE = 10;
+    private static final int BREEDING_AGE = 12;
     // The age to which a snake can live.
-    private static final int MAX_AGE = 30;
+    private static final int MAX_AGE = 53;
     // The likelihood of a snake breeding.
-    private static final double BREEDING_PROBABILITY = 0.15;
+    private static final double BREEDING_PROBABILITY = 0.22;
     // The maximum number of births.
-    private static final int MAX_LITTER_SIZE = 3;
+    private static final int MAX_LITTER_SIZE = 2;
     // The food value of a single snake. In effect, this is the
     // number of steps a snake can go before it has to eat again.
-    private static final int FOOD_VALUE = 12;
+    private static final int FOOD_VALUE = 38;
 
     /**
      * Create a snake. A snake can be created as a new born (age zero
@@ -148,5 +148,34 @@ public class Snake extends Animal
             Snake young = new Snake(false, field, loc);
             newSnakes.add(young);
         }
+    }
+    
+    /**
+     * Generate a number representing the number of births,
+     * if it can breed.
+     * @return The number of births (may be zero).
+     */
+    protected int breed()
+    {
+        int births = 0;
+        if(canBreed() && rand.nextDouble() <= BREEDING_PROBABILITY) {
+            Field field = getField();
+            List<Location> adjacent = field.adjacentLocations(getLocation());
+            Iterator<Location> it = adjacent.iterator();
+            while(it.hasNext()) {
+                Location where = it.next();
+                Object Being = field.getObjectAt(where);
+                if(Being instanceof Snake) {
+                    Snake snake = (Snake) Being;
+                    if(male && !snake.isMale()) {
+                        births = rand.nextInt(MAX_LITTER_SIZE) + 1;
+                    }
+                    else if(!male && snake.isMale()) {
+                        births = rand.nextInt(MAX_LITTER_SIZE) + 1;
+                    }
+                }
+            }
+        }
+        return births;
     }
 }

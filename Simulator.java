@@ -19,19 +19,19 @@ public class Simulator
     // The default depth of the grid.
     private static final int DEFAULT_DEPTH = 120;
     // The probability that a snake will be created in any given grid position.
-    private static final double SNAKE_CREATION_PROBABILITY = 0.03;
+    private static final double SNAKE_CREATION_PROBABILITY = 0.05;
     // The probability that a mouse will be created in any given grid position.
-    private static final double MOUSE_CREATION_PROBABILITY = 0.09;
+    private static final double MOUSE_CREATION_PROBABILITY = 0.15;
     // The probability that an owl will be created in any given grid position.
-    private static final double OWL_CREATION_PROBABILITY = 0.08;
+    private static final double OWL_CREATION_PROBABILITY = 0.10;
     // The probability that a lion will be created in any given grid position.
-    private static final double LION_CREATION_PROBABILITY = 0.02;
+    private static final double LION_CREATION_PROBABILITY = 0.04;
     // The probability that a goat will be created in any given grid position.
-    private static final double GOAT_CREATION_PROBABILITY = 0.05;
+    private static final double GOAT_CREATION_PROBABILITY = 0.09;
     // The probability that a tiger will be created in any given grid position.
-    private static final double TIGER_CREATION_PROBABILITY = 0.02;
+    private static final double TIGER_CREATION_PROBABILITY = 0.03;
     //The probability that a plant will be created in any given grid position 
-    private static final double PLANT_CREATION_PROBABILITY = 0.05;
+    private static final double PLANT_CREATION_PROBABILITY = 0.07;
     // How many steps daytime/not daytime takes;
     private static final int DAYTIME_LENGTH = 2;
     // How long a weather effect should last;
@@ -57,7 +57,7 @@ public class Simulator
     private int maleAnimals;
     // Counts the total number of female animals
     private int femaleAnimals;
-    
+
     /**
      * Construct a simulation field with default size.
      */
@@ -93,7 +93,7 @@ public class Simulator
         view.setColor(Goat.class, Color.YELLOW);
         view.setColor(Tiger.class, Color.ORANGE);
         view.setColor(Plant.class, Color.GREEN);
-        
+
         currentWeather = currentWeather.chooseWeather();
         numberOfInfectedAnimals = 0;
         maleAnimals = 0;
@@ -102,7 +102,7 @@ public class Simulator
         // Setup a valid starting point.
         reset();
     }
-    
+
     /**
      * Automatically starts the simulation and runs a set number of steps
      */
@@ -173,7 +173,7 @@ public class Simulator
             Plant plant = it.next();
             plant.act(daytime, currentWeather);
         }
-        
+
         // Add the newly born foxes and rabbits to the main lists.
         animals.addAll(newAnimals);
 
@@ -195,8 +195,6 @@ public class Simulator
         maleAnimals = 0;
         femaleAnimals = 0;
         populate();
-        
-        
 
         // Show the starting state in the view.
         view.showStatus(step, field, currentWeather, numberOfInfectedAnimals, maleAnimals, femaleAnimals);
@@ -216,31 +214,67 @@ public class Simulator
                     Location location = new Location(row, col);
                     Snake snake = new Snake(true, field, location);
                     animals.add(snake);
+                    if(snake.isMale()) {
+                        maleAnimals++;
+                    }
+                    else {
+                        femaleAnimals++;
+                    }
                 }
                 else if(rand.nextDouble() <= MOUSE_CREATION_PROBABILITY) {
                     Location location = new Location(row, col);
                     Mouse mouse = new Mouse(true, field, location);
                     animals.add(mouse);
+                    if(mouse.isMale()) {
+                        maleAnimals++;
+                    }
+                    else {
+                        femaleAnimals++;
+                    }
                 }
                 else if(rand.nextDouble() <= OWL_CREATION_PROBABILITY) {
                     Location location = new Location(row, col);
                     Owl owl = new Owl(true, field, location);
                     animals.add(owl);
+                    if(owl.isMale()) {
+                        maleAnimals++;
+                    }
+                    else {
+                        femaleAnimals++;
+                    }
                 }
                 else if(rand.nextDouble() <= LION_CREATION_PROBABILITY) {
                     Location location = new Location(row, col);
                     Lion lion = new Lion(true, field, location);
                     animals.add(lion);
+                    if(lion.isMale()) {
+                        maleAnimals++;
+                    }
+                    else {
+                        femaleAnimals++;
+                    }
                 }
                 else if(rand.nextDouble() <= GOAT_CREATION_PROBABILITY) {
                     Location location = new Location(row, col);
                     Goat goat = new Goat(true, field, location);
                     animals.add(goat);
+                    if(goat.isMale()) {
+                        maleAnimals++;
+                    }
+                    else {
+                        femaleAnimals++;
+                    }
                 }
                 else if(rand.nextDouble() <= TIGER_CREATION_PROBABILITY) {
                     Location location = new Location(row, col);
                     Tiger tiger = new Tiger(true, field, location);
                     animals.add(tiger);
+                    if(tiger.isMale()) {
+                        maleAnimals++;
+                    }
+                    else {
+                        femaleAnimals++;
+                    }
                 }
                 else if(rand.nextDouble() <= PLANT_CREATION_PROBABILITY) {
                     Location location = new Location(row, col);

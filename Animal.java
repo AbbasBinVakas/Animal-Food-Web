@@ -23,7 +23,7 @@ public abstract class Animal extends Being
     // The probability that the animal will recover from being infected each step.
     protected static final double INFECTION_RECOVERY_PROBABILITY = 0.02;
     // The probability that the animal will die due to the snow each step.
-    protected static final double SNOWING_DEATH_PROBABILITY = 0.01;
+    protected static final double SNOWING_DEATH_PROBABILITY = 0.02;
     //The probabilty that the animal will spread the infection to other animals.
     private static final double INFECTION_SPREAD_PROBABILITY = 0.35;
     //The probabilty that the an animal will be male;
@@ -35,7 +35,7 @@ public abstract class Animal extends Being
     // The being's food level, which is increased by eating plants.
     protected int foodLevel;
 
-    private boolean male;
+    protected boolean male;
 
     private boolean isAdjacentMale;
     /**
@@ -91,31 +91,33 @@ public abstract class Animal extends Being
         }
     }
 
-    /**
-     * Generate a number representing the number of births,
-     * if it can breed.
-     * @return The number of births (may be zero).
-     */
-    protected int breed()
-    {
-        int births = 0;
-        if(canBreed() && rand.nextDouble() <= BREEDING_PROBABILITY) {
-            Field field = getField();
-            List<Location> adjacent = field.adjacentLocations(getLocation());
-            Iterator<Location> it = adjacent.iterator();
-            while(it.hasNext()) {
-                Location where = it.next();
-                Object animal = field.getObjectAt(where);
-                if(male && adjacent.contains(!male)) {
-                    births = rand.nextInt(MAX_LITTER_SIZE) + 1;
-                }
-                else if(!male && adjacent.contains(male)) {
-                    births = rand.nextInt(MAX_LITTER_SIZE) + 1;
-                }
-            }
-        }
-        return births;
-    }
+    // /**
+     // * Generate a number representing the number of births,
+     // * if it can breed.
+     // * @return The number of births (may be zero).
+     // */
+    // protected int breed()
+    // {
+        // int births = 0;
+        // if(canBreed() && rand.nextDouble() <= BREEDING_PROBABILITY) {
+            // Field field = getField();
+            // List<Location> adjacent = field.adjacentLocations(getLocation());
+            // Iterator<Location> it = adjacent.iterator();
+            // while(it.hasNext()) {
+                // Location where = it.next();
+                // Object Being = field.getObjectAt(where);
+                // if(Being instanceof Mouse) {
+                    // if(male && adjacent.contains(!male)) {
+                        // births = rand.nextInt(MAX_LITTER_SIZE) + 1;
+                    // }
+                    // else if(!male && adjacent.contains(male)) {
+                        // births = rand.nextInt(MAX_LITTER_SIZE) + 1;
+                    // }
+                // }
+            // }
+        // }
+        // return births;
+    // }
 
     /**
      * An animal can breed if it has reached the breeding age.

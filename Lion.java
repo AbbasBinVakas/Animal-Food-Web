@@ -14,16 +14,16 @@ public class Lion extends Animal
     // Characteristics shared by all lions (class variables).
 
     // The age at which a lion can start to breed.
-    private static final int BREEDING_AGE = 30;
+    private static final int BREEDING_AGE = 28;
     // The age to which a lion can live.
-    private static final int MAX_AGE = 80;
+    private static final int MAX_AGE = 95;
     // The likelihood of a lion breeding.
-    private static final double BREEDING_PROBABILITY = 0.15;
+    private static final double BREEDING_PROBABILITY = 0.30;
     // The maximum number of births.
-    private static final int MAX_LITTER_SIZE = 2;
+    private static final int MAX_LITTER_SIZE = 3;
     // The food value of a single lion. In effect, this is the
     // number of steps a lion can go before it has to eat again.
-    private static final int FOOD_VALUE = 37;
+    private static final int FOOD_VALUE = 60;
 
     /**
      * Create a lion. A lion can be created as a new born (age zero
@@ -148,5 +148,34 @@ public class Lion extends Animal
             Lion young = new Lion(false, field, loc);
             newLions.add(young);
         }
+    }
+    
+    /**
+     * Generate a number representing the number of births,
+     * if it can breed.
+     * @return The number of births (may be zero).
+     */
+    protected int breed()
+    {
+        int births = 0;
+        if(canBreed() && rand.nextDouble() <= BREEDING_PROBABILITY) {
+            Field field = getField();
+            List<Location> adjacent = field.adjacentLocations(getLocation());
+            Iterator<Location> it = adjacent.iterator();
+            while(it.hasNext()) {
+                Location where = it.next();
+                Object Being = field.getObjectAt(where);
+                if(Being instanceof Lion) {
+                    Lion lion = (Lion) Being;
+                    if(male && !lion.isMale()) {
+                        births = rand.nextInt(MAX_LITTER_SIZE) + 1;
+                    }
+                    else if(!male && lion.isMale()) {
+                        births = rand.nextInt(MAX_LITTER_SIZE) + 1;
+                    }
+                }
+            }
+        }
+        return births;
     }
 }

@@ -10,4 +10,6 @@ comment3.params=daytime\ weather
 comment3.target=void\ act(boolean,\ Weather)
 comment4.params=
 comment4.target=void\ beEaten()
-numComments=5
+comment5.params=
+comment5.target=int\ returnHeight()
+numComments=6

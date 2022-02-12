@@ -54,4 +54,9 @@ public class Plant extends Being
     {
         height--;
     }
+    
+    protected int returnHeight()
+    {
+        return height;
+    }
 }

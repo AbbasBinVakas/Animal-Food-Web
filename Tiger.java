@@ -14,16 +14,16 @@ public class Tiger extends Animal
     // Characteristics shared by all tigers (class variables).
 
     // The age at which a tiger can start to breed.
-    private static final int BREEDING_AGE = 20;
+    private static final int BREEDING_AGE = 21;
     // The age to which a tiger can live.
-    private static final int MAX_AGE = 50;
+    private static final int MAX_AGE = 93;
     // The likelihood of a tiger breeding.
-    private static final double BREEDING_PROBABILITY = 0.13;
+    private static final double BREEDING_PROBABILITY = 0.37;
     // The maximum number of births.
     private static final int MAX_LITTER_SIZE = 2;
     // The food value of a single tiger. In effect, this is the
     // number of steps a tiger can go before it has to eat again.
-    private static final int FOOD_VALUE = 30;
+    private static final int FOOD_VALUE = 59;
 
     /**
      * Create a tiger. A tiger can be created as a new born (age zero
@@ -148,5 +148,34 @@ public class Tiger extends Animal
             Tiger young = new Tiger(false, field, loc);
             newTigers.add(young);
         }
+    }
+    
+    /**
+     * Generate a number representing the number of births,
+     * if it can breed.
+     * @return The number of births (may be zero).
+     */
+    protected int breed()
+    {
+        int births = 0;
+        if(canBreed() && rand.nextDouble() <= BREEDING_PROBABILITY) {
+            Field field = getField();
+            List<Location> adjacent = field.adjacentLocations(getLocation());
+            Iterator<Location> it = adjacent.iterator();
+            while(it.hasNext()) {
+                Location where = it.next();
+                Object Being = field.getObjectAt(where);
+                if(Being instanceof Tiger) {
+                    Tiger tiger = (Tiger) Being;
+                    if(male && !tiger.isMale()) {
+                        births = rand.nextInt(MAX_LITTER_SIZE) + 1;
+                    }
+                    else if(!male && tiger.isMale()) {
+                        births = rand.nextInt(MAX_LITTER_SIZE) + 1;
+                    }
+                }
+            }
+        }
+        return births;
     }
 }
