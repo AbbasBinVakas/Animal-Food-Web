@@ -15,16 +15,16 @@ public class Tiger extends Animal
     // Characteristics shared by all tigers (class variables).
  
     // The age at which a tiger can start to breed.
-    private static final int BREEDING_AGE = 21;
+    private static final int BREEDING_AGE = 22;
     // The age to which a tiger can live.
-    private static final int MAX_AGE = 93;
+    private static final int MAX_AGE = 130;
     // The likelihood of a tiger breeding.
-    private static final double BREEDING_PROBABILITY = 0.37;
+    private static final double BREEDING_PROBABILITY = 0.35;
     // The maximum number of births.
     private static final int MAX_LITTER_SIZE = 2;
     // The food value of a single tiger. In effect, this is the
     // number of steps a tiger can go before it has to eat again.
-    private static final int FOOD_VALUE = 59;
+    private static final int FOOD_VALUE = 100;
 
     /**
      * Create a tiger. A tiger can be created as a new born (age zero
@@ -60,8 +60,8 @@ public class Tiger extends Animal
         if(weather instanceof Sunny) { // what the animal does while it is sunny
             incrementAge();
             incrementHunger();
-            if(isAlive() && daytime) {
-                giveBirth(newYoung);            
+            if(isAlive() && daytime) {            
+                giveBirth(newYoung);
                 // Move towards a source of food if found.
                 Location newLocation = findFood();
                 if(newLocation == null) { 
@@ -83,8 +83,7 @@ public class Tiger extends Animal
         if(weather instanceof Raining) { // what the animal does while it is raining
             incrementAge();
             incrementHunger();
-            if(isAlive() && !daytime) {  
-                giveBirth(newYoung);            
+            if(isAlive() && !daytime) {            
                 // Move towards a source of food if found.
                 Location newLocation = findFood();
                 if(newLocation == null) { 

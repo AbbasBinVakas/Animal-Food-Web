@@ -1,10 +1,10 @@
 #BlueJ class context
 comment0.target=Snowing
-comment0.text=\n\ The\ snowing\ class\ is\ a\ subclass\ of\ the\ Weather\ class.\n\ Is\ used\ to\ simulate\ the\ snowy\ weather.\n\n\ @author\ Abbas\ BinVakas\ and\ Mohamed\ Shazeen\ Shaheen\ Nazeer\n\ K21086651\ and\ K21013731\n\ @version\ 12/02/2022\n
+comment0.text=\r\n\ The\ snowing\ class\ is\ a\ subclass\ of\ the\ Weather\ class.\r\n\ Is\ used\ to\ simulate\ the\ snowy\ weather.\r\n\r\n\ @author\ Abbas\ BinVakas\ and\ Mohamed\ Shazeen\ Shaheen\ Nazeer\r\n\ K21086651\ and\ K21013731\r\n\ @version\ 12/02/2022\r\n
 comment1.params=
 comment1.target=Snowing()
-comment1.text=\n\ Constructor\ for\ objects\ of\ class\ Raining\n
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Raining\r\n
 comment2.params=
 comment2.target=java.lang.String\ returnWeatherName()
-comment2.text=\n\ Returns\ the\ name\ of\ the\ weather,\ in\ this\ case\ "Snowing".\n\ @return\ The\ weather\ "Snowing"\n
+comment2.text=\r\n\ Returns\ the\ name\ of\ the\ weather,\ in\ this\ case\ "Snowing".\r\n\ @return\ The\ weather\ "Snowing"\r\n
 numComments=3

@@ -1,19 +1,19 @@
 #BlueJ class context
 comment0.target=Snake
-comment0.text=\n\ A\ simple\ model\ of\ a\ snake.\n\ Snakes\ age,\ move,\ eat\ mice,\ and\ die.\n\ \n\ Abbas\ BinVakas\ and\ Mohamed\ Shazeen\ Shaheen\ Nazeer\n\ K21086651\ and\ K21013731\n\ @version\ 12/02/2022\n
+comment0.text=\r\n\ A\ simple\ model\ of\ a\ snake.\r\n\ Snakes\ age,\ move,\ eat\ mice,\ and\ die.\r\n\ \r\n\ Abbas\ BinVakas\ and\ Mohamed\ Shazeen\ Shaheen\ Nazeer\r\n\ K21086651\ and\ K21013731\r\n\ @version\ 12/02/2022\r\n
 comment1.params=randomAge\ field\ location
 comment1.target=Snake(boolean,\ Field,\ Location)
-comment1.text=\n\ Create\ a\ snake.\ A\ snake\ can\ be\ created\ as\ a\ new\ born\ (age\ zero\n\ and\ not\ hungry)\ or\ with\ a\ random\ age\ and\ food\ level.\n\ \n\ @param\ randomAge\ If\ true,\ the\ snake\ will\ have\ random\ age\ and\ hunger\ level.\n\ @param\ field\ The\ field\ currently\ occupied.\n\ @param\ location\ The\ location\ within\ the\ field.\n
+comment1.text=\r\n\ Create\ a\ snake.\ A\ snake\ can\ be\ created\ as\ a\ new\ born\ (age\ zero\r\n\ and\ not\ hungry)\ or\ with\ a\ random\ age\ and\ food\ level.\r\n\ \r\n\ @param\ randomAge\ If\ true,\ the\ snake\ will\ have\ random\ age\ and\ hunger\ level.\r\n\ @param\ field\ The\ field\ currently\ occupied.\r\n\ @param\ location\ The\ location\ within\ the\ field.\r\n
 comment2.params=newYoung\ daytime\ weather
 comment2.target=void\ act(java.util.List,\ boolean,\ Weather)
-comment2.text=\n\ This\ is\ what\ the\ snake\ does\ most\ of\ the\ time\:\ it\ hunts\ for\n\ mice.\ In\ the\ process,\ it\ might\ breed,\ die\ of\ hunger,\n\ or\ die\ of\ old\ age.\n\ @param\ newYoung\ A\ list\ to\ return\ newly\ born\ snakes.\n\ @param\ daytime\ If\ true,\ time\ of\ day\ is\ daytime.\n\ @param\ weather\ The\ weather\ condition.\n
+comment2.text=\r\n\ This\ is\ what\ the\ snake\ does\ most\ of\ the\ time\:\ it\ hunts\ for\r\n\ mice.\ In\ the\ process,\ it\ might\ breed,\ die\ of\ hunger,\r\n\ or\ die\ of\ old\ age.\r\n\ @param\ newYoung\ A\ list\ to\ return\ newly\ born\ snakes.\r\n\ @param\ daytime\ If\ true,\ time\ of\ day\ is\ daytime.\r\n\ @param\ weather\ The\ weather\ condition.\r\n
 comment3.params=
 comment3.target=Location\ findFood()
-comment3.text=\n\ Look\ for\ mice\ adjacent\ to\ the\ current\ location.\n\ Only\ the\ first\ live\ mice\ is\ eaten.\n\ @return\ Where\ food\ was\ found,\ or\ null\ if\ it\ wasn't.\n
+comment3.text=\r\n\ Look\ for\ mice\ adjacent\ to\ the\ current\ location.\r\n\ Only\ the\ first\ live\ mice\ is\ eaten.\r\n\ @return\ Where\ food\ was\ found,\ or\ null\ if\ it\ wasn't.\r\n
 comment4.params=newSnakes
 comment4.target=void\ giveBirth(java.util.List)
-comment4.text=\n\ Check\ whether\ or\ not\ this\ snake\ is\ to\ give\ birth\ at\ this\ step.\n\ New\ births\ will\ be\ made\ into\ free\ adjacent\ locations.\n\ @param\ newSnakes\ A\ list\ to\ return\ newly\ born\ snakes.\n
+comment4.text=\r\n\ Check\ whether\ or\ not\ this\ snake\ is\ to\ give\ birth\ at\ this\ step.\r\n\ New\ births\ will\ be\ made\ into\ free\ adjacent\ locations.\r\n\ @param\ newSnakes\ A\ list\ to\ return\ newly\ born\ snakes.\r\n
 comment5.params=
 comment5.target=int\ breed()
-comment5.text=\n\ Generate\ a\ number\ representing\ the\ number\ of\ births,\n\ if\ it\ can\ breed.\n\ @return\ The\ number\ of\ births\ (may\ be\ zero).\n
+comment5.text=\r\n\ Generate\ a\ number\ representing\ the\ number\ of\ births,\r\n\ if\ it\ can\ breed.\r\n\ @return\ The\ number\ of\ births\ (may\ be\ zero).\r\n
 numComments=6

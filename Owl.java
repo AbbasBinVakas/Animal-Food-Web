@@ -19,12 +19,12 @@ public class Owl extends Animal
     // The age to which a owl can live.
     private static final int MAX_AGE = 100;
     // The likelihood of a owl breeding.
-    private static final double BREEDING_PROBABILITY = 0.27;
+    private static final double BREEDING_PROBABILITY = 0.23;
     // The maximum number of births.
-    private static final int MAX_LITTER_SIZE = 5;
+    private static final int MAX_LITTER_SIZE = 4;
     // The food value of a single owl. In effect, this is the
     // number of steps a owl can go before it has to eat again.
-    private static final int FOOD_VALUE = 25;
+    private static final int FOOD_VALUE = 32;
 
     /**
      * Create an owl. An owl can be created as a new born (age zero
@@ -82,9 +82,7 @@ public class Owl extends Animal
         
         if(weather instanceof Raining) { // what the animal does while it is raining
             incrementAge();
-            incrementHunger();
-            if(isAlive() && !daytime) {  
-                giveBirth(newYoung);            
+            if(isAlive() && !daytime) {             
                 // Move towards a source of food if found.
                 Location newLocation = findFood();
                 if(newLocation == null) { 

@@ -17,9 +17,9 @@ public class Lion extends Animal
     // The age at which a lion can start to breed.
     private static final int BREEDING_AGE = 28;
     // The age to which a lion can live.
-    private static final int MAX_AGE = 95;
+    private static final int MAX_AGE = 100;
     // The likelihood of a lion breeding.
-    private static final double BREEDING_PROBABILITY = 0.30;
+    private static final double BREEDING_PROBABILITY = 0.35;
     // The maximum number of births.
     private static final int MAX_LITTER_SIZE = 3;
     // The food value of a single lion. In effect, this is the
@@ -83,8 +83,7 @@ public class Lion extends Animal
         if(weather instanceof Raining) { // what the animal does while it is raining
             incrementAge();
             incrementHunger();
-            if(isAlive() && !daytime) {  
-                giveBirth(newYoung);            
+            if(isAlive() && !daytime) {         
                 // Move towards a source of food if found.
                 Location newLocation = findFood();
                 if(newLocation == null) { 

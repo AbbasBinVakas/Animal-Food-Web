@@ -1,10 +1,10 @@
 #BlueJ class context
 comment0.target=Weather
-comment0.text=\n\ The\ weather\ super\ class\ is\ used\ to\ simulate\ different\ weather\ conditions\n\ of\ the\ field.\n\n\ @author\ Abbas\ BinVakas\ and\ Mohamed\ Shazeen\ Shaheen\ Nazeer\n\ K21086651\ and\ K21013731\n\ @version\ 12/02/2022\n
+comment0.text=\r\n\ The\ weather\ super\ class\ is\ used\ to\ simulate\ different\ weather\ conditions\r\n\ of\ the\ field.\r\n\r\n\ @author\ Abbas\ BinVakas\ and\ Mohamed\ Shazeen\ Shaheen\ Nazeer\r\n\ K21086651\ and\ K21013731\r\n\ @version\ 12/02/2022\r\n
 comment1.params=
 comment1.target=java.lang.String\ returnWeatherName()
-comment1.text=\n\ @return\ The\ name\ of\ the\ weather.\n
+comment1.text=\r\n\ @return\ The\ name\ of\ the\ weather.\r\n
 comment2.params=
 comment2.target=Weather\ chooseWeather()
-comment2.text=\n\ Determines\ the\ weather\ using\ the\ probabilities.\n\ @return\ The\ weather\n
+comment2.text=\r\n\ Determines\ the\ weather\ using\ the\ probabilities.\r\n\ @return\ The\ weather\r\n
 numComments=3

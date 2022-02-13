@@ -26,7 +26,7 @@ public abstract class Animal extends Being
     // The probability that the animal will recover from being infected each step.
     protected static final double INFECTION_RECOVERY_PROBABILITY = 0.02;
     // The probability that the animal will die due to the snow each step.
-    protected static final double SNOWING_DEATH_PROBABILITY = 0.02;
+    protected static final double SNOWING_DEATH_PROBABILITY = 0.01;
     //The probabilty that the animal will spread the infection to other animals.
     private static final double INFECTION_SPREAD_PROBABILITY = 0.35;
     //The probabilty that the an animal will be male;
@@ -36,8 +36,9 @@ public abstract class Animal extends Being
     
     // The being's food level, which is increased by eating plants.
     protected int foodLevel;
+    // Whether an animal is male (true) or female (false).
     protected boolean male;
-    private boolean isAdjacentMale;
+    
     /**
      * Create a new animal at location in field.
      * 

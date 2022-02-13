@@ -15,16 +15,16 @@ public class Snake extends Animal
     // Characteristics shared by all snakes (class variables).
  
     // The age at which a snake can start to breed.
-    private static final int BREEDING_AGE = 12;
+    private static final int BREEDING_AGE = 7;
     // The age to which a snake can live.
-    private static final int MAX_AGE = 53;
+    private static final int MAX_AGE = 60;
     // The likelihood of a snake breeding.
-    private static final double BREEDING_PROBABILITY = 0.22;
+    private static final double BREEDING_PROBABILITY = 0.17;
     // The maximum number of births.
     private static final int MAX_LITTER_SIZE = 2;
     // The food value of a single snake. In effect, this is the
     // number of steps a snake can go before it has to eat again.
-    private static final int FOOD_VALUE = 38;
+    private static final int FOOD_VALUE = 47;
 
     /**
      * Create a snake. A snake can be created as a new born (age zero
@@ -83,8 +83,7 @@ public class Snake extends Animal
         if(weather instanceof Raining) { // what the animal does while it is raining
             incrementAge();
             incrementHunger();
-            if(isAlive() && !daytime) {  
-                giveBirth(newYoung);            
+            if(isAlive() && !daytime) {           
                 // Move towards a source of food if found.
                 Location newLocation = findFood();
                 if(newLocation == null) { 

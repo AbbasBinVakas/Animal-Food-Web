@@ -18,12 +18,12 @@ public class Mouse extends Animal
     // The age to which a mouse can live.
     private static final int MAX_AGE = 12;
     // The likelihood of a mouse breeding.
-    private static final double BREEDING_PROBABILITY = 0.31;
+    private static final double BREEDING_PROBABILITY = 0.40;
     // The maximum number of births.
-    private static final int MAX_LITTER_SIZE = 12;
+    private static final int MAX_LITTER_SIZE = 10;
     // The food value of a single moues. In effect, this is the
     // number of steps a mouse can go before it has to eat again.
-    private static final int FOOD_VALUE = 6;
+    private static final int FOOD_VALUE = 7;
 
     /**
      * Create a new mouse. A mouse may be created with age

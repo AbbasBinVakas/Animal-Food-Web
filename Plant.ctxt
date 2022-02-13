@@ -1,19 +1,19 @@
 #BlueJ class context
 comment0.target=Plant
-comment0.text=\n\ The\ plant\ class\ is\ a\ subclass\ of\ the\ Being\ class.\n\ Plants\ can\ grow\ and\ be\ eaten\ by\ some\ animals.\n\n\ Abbas\ BinVakas\ and\ Mohamed\ Shazeen\ Shaheen\ Nazeer\n\ K21086651\ and\ K21013731\n\ @version\ 12/02/2022\n
+comment0.text=\r\n\ The\ plant\ class\ is\ a\ subclass\ of\ the\ Being\ class.\r\n\ Plants\ can\ grow\ and\ be\ eaten\ by\ some\ animals.\r\n\r\n\ Abbas\ BinVakas\ and\ Mohamed\ Shazeen\ Shaheen\ Nazeer\r\n\ K21086651\ and\ K21013731\r\n\ @version\ 12/02/2022\r\n
 comment1.params=randomHeight\ field\ location
 comment1.target=Plant(boolean,\ Field,\ Location)
-comment1.text=\n\ @param\ randomHeight\ If\ true,\ the\ plant\ will\ have\ a\ random\ height.\n\ @param\ field\ The\ field\ currently\ occupied.\n\ @param\ location\ The\ locations\ on\ the\ field.\n
+comment1.text=\r\n\ Create\ a\ new\ plant.\ A\ plant\ may\ be\ created\ with\ height\r\n\ zero\ or\ with\ a\ random\ height.\r\n\ \r\n\ @param\ randomHeight\ If\ true,\ the\ plant\ will\ have\ a\ random\ height.\r\n\ @param\ field\ The\ field\ currently\ occupied.\r\n\ @param\ location\ The\ locations\ on\ the\ field.\r\n
 comment2.params=
 comment2.target=void\ incrementHeight()
-comment2.text=\n\ Used\ to\ increase\ the\ height\ of\ the\ plants\ until\ it\ \n\ reaches\ max\ height.\n
+comment2.text=\r\n\ Used\ to\ increase\ the\ height\ of\ the\ plants\ until\ it\ \r\n\ reaches\ max\ height.\r\n
 comment3.params=daytime\ weather
 comment3.target=void\ act(boolean,\ Weather)
-comment3.text=\n\ @param\ daytime\ The\ time\ of\ the\ day.\n\ @param\ weather\ The\ weather\ condition.\n
+comment3.text=\r\n\ A\ plant\ will\ increase\ it's\ height\ every\ action.\r\n\ \r\n\ @param\ daytime\ The\ time\ of\ the\ day.\r\n\ @param\ weather\ The\ weather\ condition.\r\n
 comment4.params=
 comment4.target=void\ beEaten()
-comment4.text=\n\ What\ happens\ when\ the\ plant\ is\ eaten\ by\ an\ animal\n
+comment4.text=\r\n\ What\ happens\ when\ the\ plant\ is\ eaten\ by\ an\ animal\r\n
 comment5.params=
 comment5.target=int\ returnHeight()
-comment5.text=\n\ @return\ The\ height\ of\ the\ plant.\n
+comment5.text=\r\n\ @return\ The\ height\ of\ the\ plant.\r\n
 numComments=6

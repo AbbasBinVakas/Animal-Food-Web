@@ -14,12 +14,15 @@ public class Plant extends Being
     // The height by which plant grows by each time.
     private static final int GROWTH_HEIGHT = 2; 
     // The maximum height that the plants can grow upto.
-    private static final int MAX_GROWTH_HEIGHT = 10;
+    private static final int MAX_GROWTH_HEIGHT = 12;
     // A random number generator.
     private static final Random rand = Randomizer.getRandom();
     private int height;
 
     /**
+     * Create a new plant. A plant may be created with height
+     * zero or with a random height.
+     * 
      * @param randomHeight If true, the plant will have a random height.
      * @param field The field currently occupied.
      * @param location The locations on the field.
@@ -52,13 +55,24 @@ public class Plant extends Being
     }
 
     /**
+     * A plant will increase it's height every action.
+     * 
      * @param daytime The time of the day.
      * @param weather The weather condition.
      */
     public void act(boolean daytime, Weather weather)
     {
         if(daytime) {
-            incrementHeight();
+            if(weather instanceof Raining) {
+                incrementHeight();
+                incrementHeight();
+            }
+            if(weather instanceof Sunny) {
+                incrementHeight();
+            }
+            if(weather instanceof Snowing) {
+                // Do nothing
+            }
         }
     }
 

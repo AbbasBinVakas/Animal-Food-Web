@@ -10,9 +10,9 @@ import java.util.Random;
 public abstract class Weather
 {
     // The probability that that it will rain.
-    private static final double RAIN_PROBABILITY = 0.3;
+    private static final double RAIN_PROBABILITY = 0.2;
     // The probability that that it will snow.
-    private static final double SNOW_PROBABILITY = 0.2;
+    private static final double SNOW_PROBABILITY = 0.1;
     // The probability that that it will be sunny.
     private static final double SUNNY_PROBABILITY = 1 - SNOW_PROBABILITY + RAIN_PROBABILITY;
     // A random number generator.
@@ -27,7 +27,8 @@ public abstract class Weather
      * Determines the weather using the probabilities.
      * @return The weather
      */
-    public static Weather chooseWeather() {
+    public static Weather chooseWeather() 
+    {
         Double randomDouble = rand.nextDouble();
         //Weather newWeather = new Weather();
         if(randomDouble <= RAIN_PROBABILITY) {

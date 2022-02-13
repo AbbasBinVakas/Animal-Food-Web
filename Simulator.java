@@ -21,23 +21,23 @@ public class Simulator
     // The default depth of the grid.
     private static final int DEFAULT_DEPTH = 120;
     // The probability that a snake will be created in any given grid position.
-    private static final double SNAKE_CREATION_PROBABILITY = 0.05;
+    private static final double SNAKE_CREATION_PROBABILITY = 0.07;
     // The probability that a mouse will be created in any given grid position.
     private static final double MOUSE_CREATION_PROBABILITY = 0.15;
     // The probability that an owl will be created in any given grid position.
-    private static final double OWL_CREATION_PROBABILITY = 0.10;
+    private static final double OWL_CREATION_PROBABILITY = 0.12;
     // The probability that a lion will be created in any given grid position.
-    private static final double LION_CREATION_PROBABILITY = 0.04;
+    private static final double LION_CREATION_PROBABILITY = 0.06;
     // The probability that a goat will be created in any given grid position.
-    private static final double GOAT_CREATION_PROBABILITY = 0.09;
+    private static final double GOAT_CREATION_PROBABILITY = 0.12;
     // The probability that a tiger will be created in any given grid position.
-    private static final double TIGER_CREATION_PROBABILITY = 0.03;
+    private static final double TIGER_CREATION_PROBABILITY = 0.05;
     //The probability that a plant will be created in any given grid position 
     private static final double PLANT_CREATION_PROBABILITY = 0.07;
     // How many steps daytime/not daytime takes;
     private static final int DAYTIME_LENGTH = 2;
     // How long a weather effect should last;
-    private static final int WEATHER_LENGTH = 20;
+    private static final int WEATHER_LENGTH = 10;
 
     // List of animals in the field.
     private List<Animal> animals;
@@ -177,8 +177,9 @@ public class Simulator
 
         // Add the newly born foxes and rabbits to the main lists.
         animals.addAll(newAnimals);
-
+        
         view.showStatus(step, field, currentWeather, numberOfInfectedAnimals, maleAnimals, femaleAnimals);
+        
         numberOfInfectedAnimals = 0;
         maleAnimals = 0;
         femaleAnimals = 0;
