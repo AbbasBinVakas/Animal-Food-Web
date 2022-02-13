@@ -17,6 +17,7 @@ public class Plant extends Being
     private static final int MAX_GROWTH_HEIGHT = 12;
     // A random number generator.
     private static final Random rand = Randomizer.getRandom();
+    // How tall the plant is, hence how much can be eaten.
     private int height;
 
     /**
