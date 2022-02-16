@@ -103,4 +103,12 @@ public class Being
     {
         return infected;
     }
+    
+    /**
+     * Make the being infected.
+     */
+    public void becomeInfected()
+    {
+        infected = true;
+    }
 }

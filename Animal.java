@@ -33,12 +33,12 @@ public abstract class Animal extends Being
     private static final double MALE_PROBABILITY = 0.5;
     // A random number generator.
     protected static final Random rand = Randomizer.getRandom();
-    
+
     // The being's food level, which is increased by eating plants.
     protected int foodLevel;
     // Whether an animal is male (true) or female (false).
     protected boolean male;
-    
+
     /**
      * Create a new animal at location in field.
      * 
@@ -123,7 +123,7 @@ public abstract class Animal extends Being
             // Otherwise the animal will stay alive but still infected
         }
     }
-    
+
     /**
      * Things that can happen when an animal is infected and it comes 
      * in contact with other animals.
@@ -137,10 +137,13 @@ public abstract class Animal extends Being
         Iterator<Location> it = adjacent.iterator();
         while(it.hasNext()) {
             Location where = it.next();
-            Object animal = field.getObjectAt(where);
-            Double randomDouble = rand.nextDouble(); 
-            if(isAlive() && randomDouble <= INFECTION_SPREAD_PROBABILITY) {
-                infected = true;
+            Object being = field.getObjectAt(where);
+            if(being instanceof Animal) {
+                Animal animal = (Animal) being;
+                Double randomDouble = rand.nextDouble(); 
+                if(isAlive() && randomDouble <= INFECTION_SPREAD_PROBABILITY) {
+                    animal.becomeInfected();
+                }
             }
         }
     }
