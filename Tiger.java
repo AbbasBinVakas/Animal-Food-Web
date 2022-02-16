@@ -19,7 +19,7 @@ public class Tiger extends Animal
     // The age to which a tiger can live.
     private static final int MAX_AGE = 130;
     // The likelihood of a tiger breeding.
-    private static final double BREEDING_PROBABILITY = 0.35;
+    private static final double BREEDING_PROBABILITY = 0.37;
     // The maximum number of births.
     private static final int MAX_LITTER_SIZE = 2;
     // The food value of a single tiger. In effect, this is the

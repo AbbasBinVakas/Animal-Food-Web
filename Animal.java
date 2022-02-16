@@ -22,13 +22,13 @@ public abstract class Animal extends Being
     // The maximum number of births of the animal.
     private final int MAX_LITTER_SIZE;
     // The probability that the animal will die when infected each step.
-    protected static final double INFECTION_DEATH_PROBABILITY = 0.02;
+    protected static final double INFECTION_DEATH_PROBABILITY = 0.07;
     // The probability that the animal will recover from being infected each step.
     protected static final double INFECTION_RECOVERY_PROBABILITY = 0.02;
     // The probability that the animal will die due to the snow each step.
-    protected static final double SNOWING_DEATH_PROBABILITY = 0.01;
+    protected static final double SNOWING_DEATH_PROBABILITY = 0.003;
     //The probabilty that the animal will spread the infection to other animals.
-    private static final double INFECTION_SPREAD_PROBABILITY = 0.35;
+    private static final double INFECTION_SPREAD_PROBABILITY = 0.10;
     //The probabilty that the an animal will be male;
     private static final double MALE_PROBABILITY = 0.5;
     // A random number generator.
@@ -114,6 +114,9 @@ public abstract class Animal extends Being
             infected = true;
         }
         if(infected) {  
+            if(location != null) {
+                spreadInfection();
+            }
             if(randomDouble <= INFECTION_DEATH_PROBABILITY) {
                 setDead();
             }

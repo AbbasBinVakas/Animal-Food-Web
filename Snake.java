@@ -19,7 +19,7 @@ public class Snake extends Animal
     // The age to which a snake can live.
     private static final int MAX_AGE = 60;
     // The likelihood of a snake breeding.
-    private static final double BREEDING_PROBABILITY = 0.17;
+    private static final double BREEDING_PROBABILITY = 0.19;
     // The maximum number of births.
     private static final int MAX_LITTER_SIZE = 2;
     // The food value of a single snake. In effect, this is the

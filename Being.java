@@ -9,7 +9,7 @@
 public class Being
 {
     // The probability that the animal will become infected each step.
-    protected static final double INFECTION_PROBABILITY = 0.03;
+    protected static final double INFECTION_PROBABILITY = 0.002;
     
     // Whether the animal is alive or not.
     protected boolean alive;

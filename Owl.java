@@ -19,7 +19,7 @@ public class Owl extends Animal
     // The age to which a owl can live.
     private static final int MAX_AGE = 100;
     // The likelihood of a owl breeding.
-    private static final double BREEDING_PROBABILITY = 0.23;
+    private static final double BREEDING_PROBABILITY = 0.31;
     // The maximum number of births.
     private static final int MAX_LITTER_SIZE = 4;
     // The food value of a single owl. In effect, this is the

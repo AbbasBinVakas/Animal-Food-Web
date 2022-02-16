@@ -120,7 +120,7 @@ public class Simulator
      */
     public void runLongSimulation()
     {
-        simulate(1000);
+        simulate(500);
     }
 
     /**

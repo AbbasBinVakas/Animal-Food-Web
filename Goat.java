@@ -19,7 +19,7 @@ public class Goat extends Animal
     // The age to which a goat can live.
     private static final int MAX_AGE = 60;
     // The likelihood of a goat breeding.
-    private static final double BREEDING_PROBABILITY = 0.53;
+    private static final double BREEDING_PROBABILITY = 0.62;
     // The maximum number of births.
     private static final int MAX_LITTER_SIZE = 5;
     // The food value of a single goat. In effect, this is the
